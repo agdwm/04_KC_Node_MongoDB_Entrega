@@ -14,7 +14,9 @@ Express Generator es un módulo de Express que nos genera un proyecto de Express
 ### EJS
 Utilizaremos el **motor de vistas "ejs"**. Para ello, lo indicaremos al momento de generar nuestro proyecto con Express generator del siguiente modo:
 
-`express —ejs nombreProyecto`
+`express --ejs nombreProyecto`
+
+Nuestra aplicación se llamará nodepop: `express --ejs nodepop`
 
 
 ### NODEMON 
