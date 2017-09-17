@@ -8,4 +8,13 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+//Ejemplo Validacion
+/*router.get('/querystring', [
+  query('age').isNumeric().withMessage('Must be numeric')
+], (req, res, next) => {
+  validationResult(req).throw();
+  console.log('req.query', req.query);
+  res.send('ok');
+});*/
+
 module.exports = router;
