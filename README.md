@@ -99,3 +99,22 @@ function onListening() {
   console.log("Listening on"+ bind);
 }
 ```
+
+## ARRANCAR LA BASE DE DATOS MONGODB
+
+* Web MongoDB: <https://www.mongodb.com/es>
+* Link de descarga de MongoDB: <https://www.mongodb.com/download-center#community>
+
+Descargamos e instalamos MongoDB. 
+
+De todos los archivos binarios contenidos en la carpeta "bin" del directorio que nos hemos acabamos de descargar, sólo necesitaremos ejecutar dos: 
+- mongod (es el servidor)
+- mongo (es el cliente)
+
+Antes de arrancar MongoDB creamos una carpeta ***"data"*** con una subcarpeta ***"db"*** que será donde mongoDB almacene los datos. 
+
+Para arrancar MongoDB escribimos a la altura de la carpeta bin:
+`bin/mongod --dbpath ./data/db --directoryperdb`
+
+Una vez ejecutada la línea anterior debería devolvernos el siguiente mensaje: 
+"waiting for connections on port 27017"

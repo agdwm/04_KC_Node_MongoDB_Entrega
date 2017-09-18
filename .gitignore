@@ -56,3 +56,6 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# mongodb
+mongodb-osx-x86_64-3.4.9
