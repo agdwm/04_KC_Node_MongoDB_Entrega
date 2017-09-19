@@ -118,3 +118,9 @@ Para arrancar MongoDB escribimos a la altura de la carpeta bin:
 
 Una vez ejecutada la línea anterior debería devolvernos el siguiente mensaje: 
 "waiting for connections on port 27017"
+
+A continuación, para arrancar el cliente, abrimos otro terminal y a la altura de la carpeta bin ejecutamos:
+`bin/mongo`
+
+Una vez arrancado, el cliente se conectará automáticamente al servidor de mongoDB.
+Nos aparecerá un mensaje de Bienvenida: "Welcome to the MongoDB shell" y el símbolo ">" para que podamos ejecutar los diferentes comandos de la shell de MongoDB.
