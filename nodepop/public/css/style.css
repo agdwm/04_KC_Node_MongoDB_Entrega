@@ -4,23 +4,60 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/nodepop/blob/master/LICENSE)
  */
 body {
-  background-image: url("/img/bg-pattern.png");
+  background: url("/img/bg-pattern.png"), linear-gradient(to left, #27dfc0, #a06fde);
   background-color: #feded1; }
 
 .header_nav {
-  background-color: #feded1;
   padding-top: 10px;
-  padding-bottom: 10px;
-  text-align: center;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15); }
+  padding-bottom: 10px; }
 
 .header_title {
   font-weight: bold;
   font-size: 3rem;
-  color: #333333; }
+  color: #000; }
 
 .header_subtitle {
-  color: #555555; }
+  color: #333333; }
+
+.form-wrap {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center; }
+
+.form-search .input-search {
+  display: inline-block;
+  width: 30%;
+  margin: 15px;
+  padding: 8px;
+  border-radius: 5px;
+  box-shadow: 0 1px 1px 0 #C7C7C7 inset;
+  appearance: none;
+  color: #333333; }
+  .form-search .input-search::placeholder {
+    color: #eeeeee; }
+
+.form-search .button-search {
+  appearance: none;
+  display: inline-block;
+  border-radius: 300px;
+  font-family: Lato,Helvetica,Arial,sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase; }
+
+.form-search .btn-xl {
+  padding: 15px 45px; }
+
+.form-search .btn-outline {
+  color: #fff;
+  border: 1px solid;
+  border-color: #fff; }
+
+a {
+  text-decoration: none;
+  background-color: transparent; }
 
 .main_section {
   padding-top: 20px;
@@ -28,4 +65,6 @@ body {
 
 .item {
   background-color: #FFF;
-  text-align: center; }
+  text-align: center;
+  height: 250px;
+  margin-top: 15px; }

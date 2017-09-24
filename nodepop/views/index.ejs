@@ -3,31 +3,35 @@
   <% include head %>
   <body>
     <header class="header">
-      <nav class="header_nav">
-          <h1 class="header_title"><%= title %></h1>
-          <p class="header_subtitle">Bienvenido a <%= title %></p>
-      </nav>
-    </header>
-    <form action="">
-      <input type="search" name="" id="">
-      <button type="submit" class="btn btn-default">Buscar</button>
-    </form>
-    <section class="main_section">
       <div class="container">
         <div class="row">
-          <div class="col-sm-6">
-            <article class="item">
-              anuncio 1
-            </article>
+          <div class="col col-xs-12">
+            <nav class="header_nav">
+              <h1 class="header_title"><%= title %></h1>
+              <p class="header_subtitle">Bienvenido a <%= title %></p>
+            </nav>
           </div>
-          <div class="col-sm-6">
-            <article class="item">
-              anuncio 1
-            </article>
+        </div>
+      </div>
+    </header>
+    
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col col-xs-12">
+            <div class="form-wrap">
+              <form class="form-search" action="">
+                <input class="input-search" type="search" name="" id="" placeholder="Buscar">
+                <a href="#" class="btn btn-outline btn-sm js-scroll-trigger">Buscar</a>
+              </form>
+            </div>     
           </div>
         </div>
       </div>
     </section>
+
+    
+    <% include list-articles %>
     <% include footer %>
   </body>
 </html>
