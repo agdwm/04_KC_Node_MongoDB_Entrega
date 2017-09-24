@@ -100,7 +100,7 @@ gulp.task('copy', function() {
 gulp.task('browserSync', ['nodemon'], function() {
   browserSync.init(null, {
     proxy: "http://localhost:3000",
-    port: 5000,
+    //port: 3001, 
     notify: true
     /* server: {
       baseDir: '',
