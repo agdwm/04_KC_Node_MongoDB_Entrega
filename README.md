@@ -107,11 +107,15 @@ function onListening() {
 
 Descargamos e instalamos MongoDB. 
 
-De todos los archivos binarios contenidos en la carpeta "bin" del directorio que nos hemos acabamos de descargar, sólo necesitaremos ejecutar dos: 
+(Podemos guardarla dentro de nuestro proyecto nodepop e incluir el path en el fichero gitignore.)
+
+De todos los archivos binarios contenidos en la carpeta "bin" (del directorio que nos hemos acabamos de descargar) sólo necesitaremos ejecutar dos: 
 - mongod (es el servidor)
 - mongo (es el cliente)
 
 Antes de arrancar MongoDB creamos una carpeta ***"data"*** con una subcarpeta ***"db"*** que será donde mongoDB almacene los datos. 
+La estructura de directorios quedaría de la siguiente forma:
+nodepop/mongodb-osx-x86_64-3.4.9/data/db
 
 Para arrancar MongoDB escribimos a la altura de la carpeta bin:
 `bin/mongod --dbpath ./data/db --directoryperdb`
@@ -124,3 +128,32 @@ A continuación, para arrancar el cliente, abrimos otro terminal y a la altura d
 
 Una vez arrancado, el cliente se conectará automáticamente al servidor de mongoDB.
 Nos aparecerá un mensaje de Bienvenida: "Welcome to the MongoDB shell" y el símbolo ">" para que podamos ejecutar los diferentes comandos de la shell de MongoDB.
+
+## MONGOOSE
+
+Se ha utilizado Mongoose para persistir objetos en MongoDB, recuperarlos y mantener esquemas de estos. 
+Una de las principales ventajas que nos ofrece Mongoose es la posibilidad de crear "modelos". Lo que nos facilitará el trabajo con documentos.
+
+* Sitio oficial de Moongose: <http://mongoosejs.com/>
+
+Para comenzar a utilizar Mongoose debemos seguir los siguientes pasos: 
+
+1.- Instalar Mongoose (podemos instalar mongoose desde npm):
+`npm install mongoose --save`
+
+2.- Importar el módulo de Mongoose:
+var mongoose = require('mongoose’);
+
+3.- Conectar Mongoose a la base de datos:
+
+```
+var conn = mongoose.connection;
+
+conn.on('error', console.error.bind(console, 'mongodb connection error:'));
+conn.once('open', function() {
+      console.info('Connected to mongodb.');
+});
+
+mongoose.connect('mongodb://localhost/cursonode');
+```
+A partir de este momento ya podríamos comenzar a trabajar con esta herramienta.
