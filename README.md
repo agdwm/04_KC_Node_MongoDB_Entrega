@@ -2,7 +2,8 @@
 
 ## CREACIÓN DEL PROYECTO:
 
-### Enunciado de la práctica: [Práctica JS Node Mongo BootCamp Web III](https://github.com/agdwm/04_KC_Node_MongoDB_Entrega/blob/master/practica_JS_Node_Mongo_BootWeb3.pdf)
+### Enunciado de la práctica: 
+[Práctica JS Node Mongo BootCamp Web III](https://github.com/agdwm/04_KC_Node_MongoDB_Entrega/blob/master/practica_JS_Node_Mongo_BootWeb3.pdf)
 
 ______
 
