@@ -2,6 +2,10 @@
 
 ## CREACIÓN DEL PROYECTO:
 
+### Enunciado de la práctica: [Práctica JS Node Mongo BootCamp Web III](https://github.com/agdwm/04_KC_Node_MongoDB_Entrega/blob/master/practica_JS_Node_Mongo_BootWeb3.pdf)
+
+______
+
 ### EXPRESS GENERATOR
 Esta aplicación está generada con el framework Express, utilizando el **estructurador de proyectos** de Express llamado "Express Generator".
 
