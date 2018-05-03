@@ -1,11 +1,11 @@
 {
-    "env": {
+	"extends": "airbnb-base",
+	"env": {
         "browser": true,
         "commonjs": true,
         "es6": true,
         "node": true
     },
-    "extends": "eslint:recommended",
     "rules": {
         "indent": [
             "error",
@@ -23,6 +23,7 @@
             "error",
             "always"
         ],
-        "no-console": "off"
+		"no-console": "off",
+		"no-tabs": "off"
     }
 }
