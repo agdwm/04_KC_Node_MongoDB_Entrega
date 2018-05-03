@@ -15,14 +15,6 @@
             "error",
             "unix"
         ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ],
 		"no-console": "off",
 		"no-tabs": "off"
     }
