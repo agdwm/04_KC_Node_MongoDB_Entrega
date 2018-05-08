@@ -1,37 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <% include head %>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/css/style.css'/>
+	<!-- ** PRODUCTION ** -->
+	<!--<link rel='stylesheet' href='/css/style.min.css'/>-->
+  </head>
   <body>
-    <header class="header">
-      <div class="container">
-        <div class="row">
-          <div class="col col-xs-12">
-            <nav class="header_nav">
-              <h1 class="header_title"><%= title %></h1>
-              <p class="header_subtitle">Bienvenido a <%= title %></p>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </header>
-    
-    <section>
-      <div class="container">
-        <div class="row">
-          <div class="col col-xs-12">
-            <div class="form-wrap">
-              <form class="form-search" action="">
-                <input class="input-search" type="search" name="" id="" placeholder="Buscar">
-                <a href="#" class="btn btn-outline btn-sm js-scroll-trigger">Buscar</a>
-              </form>
-            </div>     
-          </div>
-        </div>
-      </div>
-    </section>
-
-    
-    <% include list-articles %>
-    <% include footer %>
+    <h1 class="titulo"><%= title %></h1>
+    <h2>Bienvenido a <%= title %></h2>
+	<script src="/js/main.js"></script>
+	<!-- ** PRODUCTION ** -->
+	<!--<script src="/js/main.min.js"></script>-->
   </body>
 </html>
