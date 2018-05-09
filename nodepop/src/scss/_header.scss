@@ -1,11 +1,44 @@
+html {
+	font-size: 62.5%;
+}
+
+body{
+	@include rem(font-size, 1.6rem);
+}
+
+header {
+	position: relative;
+	border: 1px solid black;
+	height: 150px;
+}
+
+.logo {
+	font-family: "Baloo Thambi", cursive;
+	font-size: 3em;
+	color: $color-blue;
+	@include centerer(false, 50%);
+}
+
+.main-menu {
+	
+
+
+}
+.idiom-menu{
+	right: 0;
+	@include centerer(false, 50%);
+
+}
+
+
 .titulo {
 	font-size: 54px;
-	color: #ee11b7;
+	color: #EE11B7;
 	text-decoration: none;
 }
 
 h2 {
 	font-family: Helvetica, Arial, Verdana, Tahoma, sans-serif;
 	font-size: 42px;
-	color: #ffc0cb;
+	color: #FFC0CB;
 }

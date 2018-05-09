@@ -1,16 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/css/style.css'/>
+
+<head>
+	<title>
+		<%= title %>
+	</title>
+	<link href="https://fonts.googleapis.com/css?family=Baloo+Thambi" rel="stylesheet">
+	<link href='/css/style.css' rel='stylesheet' />
 	<!-- ** PRODUCTION ** -->
 	<!--<link rel='stylesheet' href='/css/style.min.css'/>-->
-  </head>
-  <body>
-    <h1 class="titulo"><%= title %></h1>
-    <h2>Bienvenido a <%= title %></h2>
+</head>
+
+<body>
+	<header>
+		<h1 class="logo">
+			<%= title %>
+		</h1>
+		<div class="main-menu">
+			<div>
+				<button type="button">COMPRAR</button>
+				<button type="button">VENDER</button>
+			</div>
+		</div>
+		<div class="idiom-menu">
+			<div>
+				<button type="button" class="btn btn-primary">EN</button>
+				<button type="button" class="btn btn-primary">ES</button>
+			</div>
+		</div>
+	</header>
 	<script src="/js/main.js"></script>
 	<!-- ** PRODUCTION ** -->
 	<!--<script src="/js/main.min.js"></script>-->
-  </body>
+</body>
+
 </html>
+
