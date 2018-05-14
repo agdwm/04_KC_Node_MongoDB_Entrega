@@ -139,7 +139,7 @@ gulp.task('img', () => {
             '*': [
                 { width: 150, rename: { suffix: '-150px' }},
                 { width: 250, rename: { suffix: '-250px' }},
-                { width: 300, rename: { suffix: '-300px' }}
+                { width: 400, rename: { suffix: '-400px' }}
             ]
         }))
         .pipe(imagemin()) // optimizamos el peso de las imágenes
