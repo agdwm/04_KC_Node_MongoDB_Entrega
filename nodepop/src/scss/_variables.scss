@@ -9,6 +9,7 @@ $color-green-light: #51CBBD !default;
 $color-green-dark: #0E8E7F !default;
 $color-blue: #0E8E7F !default;
 $color-blue-light:#0AB9D8 !default;
+$color-pink: #F3E3E2 !default;
 
 //Font Families
 
@@ -17,9 +18,9 @@ $font-size-body: 13px !default;
 $font-size-base: 16px !default;
 $font-size-h1: $font-size-base + 20px !default; //36
 $font-size-h2: $font-size-base + 12px !default; //28
-$font-size-h3: $font-size-base + 9px !default; //25
-$font-size-h4: $font-size-base + 6px !default; //22
-$font-size-h5: $font-size-base + 3px !default; //19
+$font-size-h3: $font-size-base + 8px !default; //24
+$font-size-h4: $font-size-base + 4px !default; //20
+$font-size-h5: $font-size-base + 2px !default; //18
 $font-size-h6: $font-size-base !default; //16
 $font-size-xs: $font-size-base - 5px !default; //11
 

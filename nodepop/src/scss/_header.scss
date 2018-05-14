@@ -38,32 +38,28 @@ header {
 .main-menu {
 	grid-area: main-menu;
 	margin: 10px 0;
-	.main-menu_group{
-		border-radius: 10px;
-		border: 2px solid $color-green;
-
+	.main-menu_group {
 		position: relative;
-		display: inline-flex;
-		/* border: 1px solid red; */
-		vertical-align: middle;
 		box-sizing: border-box;
+		display: inline-flex;
 		width: 100%;
 		overflow: hidden;
+		vertical-align: middle;
+		border: 2px solid $color-green;
+		border-radius: 10px;
 	}
-	button{
-		//padding: 10px 0;
+	.button{
+		display: inline-block;
 		width: calc(50%);
-		font-size: $font-size-h5;
-		text-transform: uppercase;
-		color: $color-green;
-		border:none;
-		display:inline-block;
-		//border: 1px solid darken($color-green, 5%);
 		padding: 10px;
+		font-size: $font-size-h5;
+		color: $color-green;
+		text-transform: uppercase;
+		border: none;
 		appearance: none;
 		&.active {
-			background-color: $color-green;
 			color: #FFFFFF;
+			background-color: $color-green;
 		}
 	}
 
@@ -71,11 +67,11 @@ header {
 .search{
 	grid-area: search;
 	position: relative;
+	margin: 5px 0;
 	overflow: hidden;
 	color: $color-gray-dark;
 	border: 1px solid darken($color-gray-light, 15%);
 	border-radius: 10px;
-	margin: 5px 0;
 
 	input {
 		width: 100%;
@@ -84,6 +80,9 @@ header {
 		border-radius: 10px;
 		outline: $color-gray-light;
 		appearance: none;
+		&:focus{
+			background-color: lighten($color-gray-light, 3%);
+		}
 	}
 	span{
 		@include centerer(false, true);
@@ -101,6 +100,7 @@ header {
 			background-color: darken($color-gray-light, 10%);
 
 		}
+
 	}
 	i{
 		@include centerer(true, true);
@@ -174,18 +174,21 @@ header {
 }
 
 .ad-list {
-	margin-top: 35px;
 	display: grid;
-	grid-template-columns: repeat(2, minmax(223px, 400px));
 	justify-content: center;
+	padding: 0 15px;
+	margin-top: 35px;
+	grid-template-columns: repeat(2, minmax(223px, 400px));
 	gap: 25px;
-	padding:0 15px;
+	figcaption{
+		padding: 10px 15px;
+	}
 }
 .ad{
-	border: 2px solid $color-gray-light;
-	cursor: pointer;
 	position: relative;
 	display: block;
+	cursor: pointer;
+	border: 2px solid $color-gray-light;
 }
 .ad-image{
 	margin: 0;
@@ -194,7 +197,54 @@ header {
 	width: 100%;
 	vertical-align: top;
 }
+.ad_details{
+	width: 75%;
+}
+.ad-title{
+	padding-bottom: 10px;
+	font-size: $font-size-h4;
+	color: $color-gray-dark;
+	text-align: center;
+	border-bottom: 1px solid $color-gray-light;
+}
 
+
+
+.ad_tags {
+	span{
+		background-color: $color-gray-light;
+		display: inline-block;
+		color: $color-gray-dark;
+		padding: 5px 15px;
+		border-radius: 10px;
+		margin-bottom: 10px;
+	}
+}
+.ad_type{
+	display: inline-block;
+	span{
+		color: lighten($color-gray-dark, 10%);
+		padding: 15px 5px 5px 5px;
+		border-radius: 10px;
+		text-transform: uppercase;
+		font-size: $font-size-base;
+	}
+}
+.ad_price{
+
+	margin: 10px 0;
+	width: 20%;
+	position: absolute;
+	right: 15px;
+	bottom: 0;
+	text-align: right;
+	font-size: $font-size-h3;
+	//font-weight: 400;
+	p{
+		margin: 0;
+		color: $color-green;
+	}
+}
 
 @media screen and (min-width: 768px) {
 	.subHeader{
@@ -214,7 +264,6 @@ header {
 			padding: 5px 15px;
 		}
 	}
-
 }
 
 @media screen and (min-width: 992px) {
