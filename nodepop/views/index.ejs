@@ -6,6 +6,7 @@
 		<%= title %>
 	</title>
 	<link href="https://fonts.googleapis.com/css?family=Baloo+Thambi" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
 	<link href='/css/style.css' rel='stylesheet' />
 	<!-- ** PRODUCTION ** -->
 	<!--<link rel='stylesheet' href='/css/style.min.css'/>-->
@@ -16,19 +17,34 @@
 		<h1 class="logo">
 			<%= title %>
 		</h1>
-		<div class="main-menu">
-			<div>
-				<button type="button">COMPRAR</button>
-				<button type="button">VENDER</button>
-			</div>
-		</div>
 		<div class="idiom-menu">
 			<div>
-				<button type="button" class="btn btn-primary">EN</button>
-				<button type="button" class="btn btn-primary">ES</button>
+				<button type="button" class="btn btn-primary">en</button>
+				<button type="button" class="btn btn-primary">es</button>
 			</div>
 		</div>
 	</header>
+	<div class=subHeader>
+		<div class="main-menu">
+			<div>
+				<button type="button">comprar</button>
+				<button type="button">vender</button>
+			</div>
+		</div>
+		<div class="search">
+			<input type="search">
+			<span>
+				<i class="glyphicon glyphicon-search"></i>
+			</span>
+		</div>
+	</div>
+	<div class="filters">
+		<div class="filter-item active"><p>work</p></div>
+		<div class="filter-item active"><p>lifestyle</p></div>
+		<div class="filter-item"><p>motor</p></div>
+		<div class="filter-item"><p>mobile</p></div>
+	</div>
+
 	<script src="/js/main.js"></script>
 	<!-- ** PRODUCTION ** -->
 	<!--<script src="/js/main.min.js"></script>-->

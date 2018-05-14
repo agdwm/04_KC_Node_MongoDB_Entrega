@@ -153,7 +153,7 @@ gulp.task('browserSync', ['nodemon'], () => {
 		proxy: 'http://localhost:3000',
 		port: 4000,
 		open: false,
-		notify: true,
+		notify: false,
 		// snippetOptions: {
 		//   rule: {
 		//     match: /<\/body>/i,
