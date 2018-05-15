@@ -27,8 +27,9 @@ header {
 
 .logo {
 	grid-area: logo;
+	display: swap;
 	margin: 0;
-	font-family: "Baloo Thambi", cursive;
+	font-family: "Baloo Thambi", sans-serif;
 	font-size: $font-size-h1;
 	color: #FFFFFF;
 }
@@ -36,7 +37,7 @@ header {
 .idiom-menu{
 	grid-area: idiom-menu;
 	text-align: right;
-	button{
+	.idiom_button {
 		width: 45px;
 		height: 45px;
 		margin: 0 5px;
@@ -46,9 +47,13 @@ header {
 		background-color: darken($color-green, 5%);
 		border: none;
 		border-radius: 50%;
-
+		outline: none;
+		&.active {
+			background-color: darken($color-green, 10%);
+		}
 		&:hover{
 			background-color: darken($color-green, 10%);
+			transition: background-color 400ms ease;
 		}
 	}
 }

@@ -1,9 +1,6 @@
 window.$ = window.jQuery = require('jquery');
 
-console.log('hoasdfasdf');
+import HeaderManager from './services/headerManager';
 
-/* eslint-disable */
-$('.titulo').css({
-	color: 'black',
-	display: 'block',
-});
+const headerManager = new HeaderManager();
+headerManager.init();

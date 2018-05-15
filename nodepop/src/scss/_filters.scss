@@ -22,6 +22,7 @@
 		&:hover{
 			color: lighten($color-gray-dark, 20%);
 			border: 3px solid darken($color-gray-light, 25%);
+			transition: all 200ms ease;
 		}
 		&.active{
 			color: $color-gray-dark;
