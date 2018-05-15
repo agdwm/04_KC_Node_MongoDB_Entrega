@@ -1,9 +1,14 @@
+/* BOOTSTRAP */
 @import "bootstrap/override-variables";
 @import "bootstrap/bootstrap-custom";
-
 /* @import "bootstrap/theme"; */
-@import "variables";
-@import "mixins";
+
+/* UTILS */
+@import "utils/variables";
+@import "utils/mixins";
+
+/* COMPONENTS */
+@import "tags";
 @import "header";
 @import "subheader";
 @import "filters";

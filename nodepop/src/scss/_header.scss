@@ -1,20 +1,3 @@
-html {
-	font-size: 62.5%;
-}
-
-body{
-	@include rem(font-size, 1.6rem);
-
-	font-family: Lato, sans-serif;
-}
-a{
-	color: $color-green-dark;
-	&:hover{
-		color: $color-green;
-		text-decoration: none;
-	}
-}
-
 header {
 	display: grid;
 	align-items: center;

@@ -37,17 +37,13 @@
 	width: 100%;
 	vertical-align: top;
 }
-.ad_details{
-	display: flex;
-	align-items: baseline;
-	justify-content: space-between;
 
-}
 .ad-title{
 	padding-bottom: 10px;
 	font-size: $font-size-h4;
-	color: $color-gray-dark;
-	text-align: center;
+	font-weight: 600;
+	color: lighten($color-gray-dark, 10%);
+	text-align: left;
 	border-bottom: 1px solid $color-gray-light;
 }
 
@@ -56,14 +52,21 @@
 		display: inline-block;
 		padding: 2px 15px;
 		margin-bottom: 10px;
+		font-size: $font-size-base;
 		color: $color-gray-dark;
 		background-color: $color-gray-light;
 		border-radius: 10px;
 	}
 }
 
-.ad_type{
+.ad_details{
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+}
 
+
+.ad_type{
 	span{
 		padding: 15px 5px 5px 5px;
 		font-size: $font-size-base;
@@ -83,19 +86,19 @@
 /* ================================= */
 // MEDIA QUERIES
 /* ================================= */
-@media screen and (min-width: 481px) {
+@media screen and (min-width: $mobile-portrait-width) {
 	.ad-list {
 		grid-template-columns: repeat(2, minmax(223px, 400px));
 	}
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: $tablet-portrait-width) {
 	.ad-list {
 		grid-template-columns: repeat(3, minmax(223px, 400px));
 	}
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: $tablet-landscape-width) {
 	.ad-list {
 		grid-template-columns: repeat(4, minmax(223px, 400px));
 	}

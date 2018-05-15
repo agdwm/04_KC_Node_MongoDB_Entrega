@@ -37,7 +37,7 @@
 /* ================================= */
 // MEDIA QUERIES
 /* ================================= */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: $tablet-portrait-width) {
 	.filters{
 		gap: 15px;
 		.filter-item{

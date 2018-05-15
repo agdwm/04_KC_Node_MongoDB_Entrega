@@ -1,0 +1,31 @@
+// Nodepop Variables
+// Base Colors
+$color-yellow: #FFCD34 !default;
+$color-gray-dark: #3E3D42 !default;
+$color-gray-light: #F0F0F2 !default;
+$color-red: #B30000 !default;
+$color-green: #13C1AC !default;
+$color-green-light: #51CBBD !default;
+$color-green-dark: #0E8E7F !default;
+$color-blue: #0E8E7F !default;
+$color-blue-light:#0AB9D8 !default;
+$color-pink: #F3C5C2 !default;
+
+//Font Families
+
+//Font Sizes
+$font-base: 16 !default;
+$font-size-base: 16px !default;
+$font-size-h1: remCalc(36, $font-base) !default; //36
+$font-size-h2: remCalc(28, $font-base) !default; //28
+$font-size-h3: remCalc(24, $font-base) !default; //24
+$font-size-h4: remCalc(20, $font-base) !default; //20
+$font-size-h5: remCalc(18, $font-base) !default; //18
+$font-size-h6: remCalc(16, $font-base) !default; //16
+$font-size-xs: remCalc(11, $font-base) !default; //11
+
+//Media Queries
+$mobile-portrait-width: 481px; //iphone6
+$mobile-landscape-width: 640px; //iphone6
+$tablet-portrait-width: 768px; //ipad
+$tablet-landscape-width: 1024px; //ipad

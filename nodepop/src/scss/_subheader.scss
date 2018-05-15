@@ -100,14 +100,14 @@
 /* ================================= */
 // MEDIA QUERIES
 /* ================================= */
-@media screen and (min-width: 481px) {
+@media screen and (min-width: $mobile-portrait-width) {
 	.subHeader{
 		grid-template-areas: "main-menu . "
 							"search search";
 	}
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: $tablet-portrait-width) {
 	.subHeader{
 		grid-template-columns: minmax(300px, 400px);
 		grid-template-areas: "main-menu search";
