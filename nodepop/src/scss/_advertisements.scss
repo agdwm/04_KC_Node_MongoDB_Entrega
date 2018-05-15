@@ -1,9 +1,11 @@
 
 .ad-list {
+	grid-area: ad-list;
 	display: grid;
 	justify-content: center;
 	padding: 0 15px;
 	margin-top: 35px;
+	margin-bottom: 40px;
 	grid-template-columns: 1, 1fr;
 	gap: 25px;
 	figcaption{

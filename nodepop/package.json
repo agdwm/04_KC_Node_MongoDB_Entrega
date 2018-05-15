@@ -19,7 +19,8 @@
 		"jquery": "^3.3.1",
 		"mongodb": "^3.0.8",
 		"mongoose": "^5.0.17",
-		"morgan": "~1.9.0"
+		"morgan": "~1.9.0",
+		"paginationjs": "^2.1.2"
 	},
 	"devDependencies": {
 		"autoprefixer": "^8.4.1",

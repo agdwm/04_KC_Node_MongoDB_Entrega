@@ -1,0 +1,136 @@
+.pagination-wrap {
+	grid-area: pagination-wrap;
+	margin-top: 10px;
+	margin-bottom: 15px;
+	display: block;
+}
+
+.pagination {
+	width: 100%;
+	text-align: center;
+	a {
+		display: block;
+		color: $color-gray-dark;
+		background-color: $color-gray-light;
+		&:active {
+			background-color: $color-green-light;
+		}
+	}
+	@media screen and (min-width: 768px) {
+		display: block;
+		width: 90%;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	@media screen and (min-width: 992px) {
+		width: 80%;
+	}
+}
+
+//The names of the following classes extracted from "paginationjs" library
+.paginationjs-pages {
+	display: block;
+	padding-bottom: 20px;
+	ul {
+		margin-bottom: 0;
+	}
+	li {
+		display: inline-block;
+		//margin-right: 4px;
+		//margin-left: 4px;
+		vertical-align: middle;
+		&.active {
+			a {
+				color: #FFFFFF;
+				background-color: $color-green;
+			}
+		}
+	}
+	a {
+		padding: 9px 15px 10px;
+		font-weight: 600;
+		border: 1px solid $color-gray-light;
+		&:hover {
+			background-color: darken($color-gray-light, 5%);
+			border: 1px solid darken($color-gray-light, 5%);
+		}
+		&:active {
+			background-color: $color-green-light;
+			border: 1px solid $color-green-light;
+		}
+	}
+	.paginationjs-prev,
+	.paginationjs-next {
+		&.disabled {
+			a {
+				color: darken($color-gray-light, 15%);
+				background-color: $color-gray-light;
+			}
+		}
+	}
+	.paginationjs-prev {
+		float: left;
+		margin-right: 8px;
+		a {
+			border-top-left-radius: 10px;
+			border-bottom-left-radius: 10px;
+		}
+	}
+	.paginationjs-next {
+		float: right;
+		margin-left: 8px;
+		a {
+			border-top-right-radius: 10px;
+			border-bottom-right-radius: 10px;
+		}
+	}
+	@media screen and (min-width: 481px) {
+		display: inline-block;
+	}
+	@media screen and (min-width: 768px) {
+		a {
+			padding: 10px 28px;
+		}
+	}
+}
+
+.paginationjs-go-base {
+	box-sizing: border-box;
+	padding: 10px 15px;
+	appearance: none;
+}
+
+.paginationjs-go-input {
+	display: inline-block;
+	vertical-align: middle;
+	.J-paginationjs-go-pagenumber {
+		@extend .paginationjs-go-base;
+
+		max-width: 68px;
+		text-align: center;
+		border: 1px solid darken($color-gray-light, 15%);
+		outline-color: lighten($color-green, 5%);
+		&:focus{
+			background-color: lighten($color-gray-light, 3%);
+			transition: background-color 300ms ease;
+		}
+	}
+	@media screen and (min-width: 481px) {
+		margin-left: 20px;
+	}
+}
+
+.paginationjs-go-button {
+	display: inline-block;
+	margin-left: 10px;
+	vertical-align: middle;
+	.J-paginationjs-go-button {
+		@extend .paginationjs-go-base;
+
+		border: 1px solid darken($color-gray-light, 15%);
+		border-radius: 10px;
+		&:hover {
+			background-color: $color-gray-light;
+		}
+	}
+}
