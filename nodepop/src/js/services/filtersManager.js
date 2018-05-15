@@ -11,12 +11,12 @@ export default class FiltersManager {
 
 	setupClickEventHandler() {
 		this.btnFilter.on('click', (e) => {
-			this.swithFilter($(e.currentTarget));
+			this.toggleFilter($(e.currentTarget));
 			return false;
 		});
 	}
 
-	swithFilter(btn) {
+	toggleFilter(btn) {
 		btn.toggleClass('active');
 	}
 }

@@ -22,7 +22,7 @@
 		border: 2px solid $color-green;
 		border-radius: 10px;
 	}
-	.button{
+	.main_button{
 		display: inline-block;
 		width: calc(50%);
 		padding: 10px;
@@ -30,10 +30,24 @@
 		color: $color-green;
 		text-transform: uppercase;
 		border: none;
+		outline: none;
 		appearance: none;
+
 		&.active {
 			color: #FFFFFF;
 			background-color: $color-green;
+			&:first-child{
+				border-right: 1px solid darken($color-green, 7%);
+			}
+			&:last-child{
+				border-left: 1px solid lighten($color-green, 5%);
+			}
+		}
+		&:first-child{
+			border-right: 1px solid $color-green;
+		}
+		&:last-child{
+			border-left: 1px solid $color-green;
 		}
 	}
 }
