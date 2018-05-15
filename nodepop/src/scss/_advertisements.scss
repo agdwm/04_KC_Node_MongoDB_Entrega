@@ -1,0 +1,102 @@
+
+.ad-list {
+	display: grid;
+	justify-content: center;
+	padding: 0 15px;
+	margin-top: 35px;
+	grid-template-columns: 1, 1fr;
+	gap: 25px;
+	figcaption{
+		padding: 10px 15px;
+	}
+}
+
+.ad{
+	position: relative;
+	display: block;
+	cursor: pointer;
+	border: 2px solid $color-gray-light;
+	&.buy {
+		.ad_type,
+		.ad_price  {
+			color: darken($color-pink, 15%);
+		}
+	}
+	&.sell {
+		.ad_type,
+		.ad_price  {
+			color: $color-green;
+		}
+	}
+}
+
+.ad-image{
+	margin: 0;
+}
+.ad-image img{
+	width: 100%;
+	vertical-align: top;
+}
+.ad_details{
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+
+}
+.ad-title{
+	padding-bottom: 10px;
+	font-size: $font-size-h4;
+	color: $color-gray-dark;
+	text-align: center;
+	border-bottom: 1px solid $color-gray-light;
+}
+
+.ad_tags {
+	span{
+		display: inline-block;
+		padding: 2px 15px;
+		margin-bottom: 10px;
+		color: $color-gray-dark;
+		background-color: $color-gray-light;
+		border-radius: 10px;
+	}
+}
+
+.ad_type{
+
+	span{
+		padding: 15px 5px 5px 5px;
+		font-size: $font-size-base;
+		text-transform: uppercase;
+		border-radius: 10px;
+	}
+}
+
+.ad_price{
+	text-align: right;
+	span{
+		margin: 0;
+		font-size: $font-size-h3;
+	}
+}
+
+/* ================================= */
+// MEDIA QUERIES
+/* ================================= */
+@media screen and (min-width: 481px) {
+	.ad-list {
+		grid-template-columns: repeat(2, minmax(223px, 400px));
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.ad-list {
+		grid-template-columns: repeat(3, minmax(223px, 400px));
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.ad-list {
+		grid-template-columns: repeat(4, minmax(223px, 400px));
+	}
+}
