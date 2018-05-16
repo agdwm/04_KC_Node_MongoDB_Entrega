@@ -8,7 +8,7 @@ conn.on('error', (err) => {
 });
 
 conn.once('open', () => {
-	console.log('Conectado a MongoDB.');
+	console.info('Conectado a MongoDB.');
 });
 
 mongoose.connect('mongodb://localhost/cursonode', {

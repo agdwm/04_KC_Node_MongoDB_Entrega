@@ -58,4 +58,4 @@ typings/
 .env
 
 # mongodb
-mongodb-osx-x86_64-3.4.9
+mongodb-osx-x86_64-3.6.4
