@@ -11,6 +11,4 @@ conn.once('open', () => {
 	console.info('Conectado a MongoDB.');
 });
 
-mongoose.connect('mongodb://localhost/cursonode', {
-	useMongoClient: true,
-});
+mongoose.connect('mongodb://localhost/cursonode');

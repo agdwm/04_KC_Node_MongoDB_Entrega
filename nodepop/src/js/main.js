@@ -11,7 +11,7 @@ const headerManager = new HeaderManager();
 const subHeaderManager = new SubHeaderManager();
 const filtersManager = new FiltersManager();
 const paginateService = new PaginateService();
-const adsListManager = new AdsListManager("#ad-list", paginateService);
+const adsListManager = new AdsListManager('#ad-list', paginateService);
 
 headerManager.init();
 subHeaderManager.init();

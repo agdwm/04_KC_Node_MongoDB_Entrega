@@ -1,17 +1,17 @@
 const $ = require('jquery');
 
-export default class HeaderManager {
+export default class AdsListManager {
 	constructor(elementSelector, paginateService) {
-		super(elementSelector);
 		this.adsListView = $(elementSelector);
 		this.paginateService = paginateService;
 	}
 
 	init() {
-		if(this.adsListView > 0){
-
+		if (this.adsListView.length > 0) {
+			// console.log('presente');
 		}
 	}
 
 }
+
 
