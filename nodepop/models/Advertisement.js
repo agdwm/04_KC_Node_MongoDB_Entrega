@@ -15,9 +15,13 @@ const advertisementSchema = mongoose.Schema({
 	},
 	photo: String,
 	tags: {
-		type: Array,
+		type: String,
+		enum: {
+			values: ['work', 'lifestyle', 'mobile', 'motor']
+		},
 		index: true
 	}
 });
 
-mongoose.model('Advertisement', advertisementSchema);
+const Advertisement = mongoose.model('Advertisement', advertisementSchema);
+module.exports = Advertisement;
