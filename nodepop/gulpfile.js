@@ -169,30 +169,27 @@ gulp.task('browserSync', ['nodemon'], () => {
 gulp.task('nodemon', (callback) => {
 	let started = false;
 	return nodemon({
-			script: './bin/www',
-			ext: 'js',
-			ignore: ['public/**/*.js'],
-			env: {
-				'NODE_ENV': 'development',
-				'DEBUG': 'nodepop:*'
-			}
-		}).on('start', () => {
-			//avoid nodemon being started multiple times
-			if (!started) {
-				callback();
-				started = true;
-			}
-		})
-		.on('crash', () => {
-			console.log('nodemon.crash');
-		})
-		.on('restart', () => {
-			console.log('nodemon.restart');
-		})
-		.once('quit', () => {
-			// handle ctrl+c without a big weep
-			process.exit();
-		});
+		script: './bin/www',
+		ext: 'js',
+		ignore: ['public/**/*.js'],
+		env: {
+			'NODE_ENV': 'development',
+			'DEBUG': 'nodepop:*'
+		}
+	}).on('start', () => {
+		// avoid nodemon being started multiple times
+		if (!started) {
+			callback();
+			started = true;
+		}
+	}).on('crash', () => {
+		console.log('nodemon.crash');
+	}).on('restart', () => {
+		console.log('nodemon.restart');
+	}).once('quit', () => {
+		// handle ctrl+c without a big weep
+		process.exit();
+	});
 });
 
 // Give nodemon time to restart

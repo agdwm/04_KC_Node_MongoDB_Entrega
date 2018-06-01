@@ -19,15 +19,19 @@
 	cursor: pointer;
 	border: 2px solid $color-gray-light;
 	&.buy {
-		.ad_type,
+		.ad_type {
+			color: darken($color-pink, 15%);
+		}
 		.ad_price  {
 			color: darken($color-pink, 15%);
 		}
 	}
 	&.sell {
-		.ad_type,
-		.ad_price  {
+		.ad_type {
 			color: $color-green;
+		}
+		.ad_price  {
+			color: $color-green-intense;
 		}
 	}
 }
