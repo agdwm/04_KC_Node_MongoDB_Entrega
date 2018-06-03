@@ -7,8 +7,19 @@ const mongoose = require('mongoose');
 const Advertisement = mongoose.model('Advertisement');
 
 // GET / -> /apiv1/ads
+// FILTERS: // -> /apiv1/ads/?title=x
 router.get('/', (req, res, next) => {
-	Advertisement.find({}, (err, lista) => {
+
+	const title = req.query.title;
+
+	const filter = {};
+
+	if (title) {
+		const regexp = new RegExp(`^${title}`, 'i');
+		filter.title = { $regex: regexp };
+	}
+
+	Advertisement.list(filter, (err, lista) => {
 		if (err) {
 			console.log('Error', err);
 			next(err);
