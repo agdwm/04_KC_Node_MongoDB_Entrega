@@ -19,4 +19,6 @@ export default class FiltersManager {
 	toggleFilter(btn) {
 		btn.toggleClass('active');
 	}
+
+	
 }

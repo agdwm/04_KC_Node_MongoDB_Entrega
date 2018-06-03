@@ -1,9 +1,9 @@
 'use strict';
 
 const express = require('express');
-const mongoose = require('mongoose');
-
 const router = express.Router();
+
+const mongoose = require('mongoose');
 const Advertisement = mongoose.model('Advertisement');
 
 // GET /
@@ -17,5 +17,18 @@ router.get('/', (req, res, next) => {
 		res.json({ success: true, rows: lista });
 	});
 });
+
+// POST /
+router.post('/', (req, res, next) => {
+	const advertisement = new Advertisement(req.body);
+
+	advertisement.save((err, advertisementGuardado) => {
+		if (err) {
+			return next(err);
+		}
+		res.json({ success: true, advertisement: advertisementGuardado });
+	});
+});
+
 
 module.exports = router;

@@ -11,7 +11,4 @@ export default class AdsListManager {
 			// console.log('presente');
 		}
 	}
-
 }
-
-
