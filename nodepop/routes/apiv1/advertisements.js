@@ -6,7 +6,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Advertisement = mongoose.model('Advertisement');
 
-// GET /
+// GET / -> /apiv1/ads
 router.get('/', (req, res, next) => {
 	Advertisement.find({}, (err, lista) => {
 		if (err) {
@@ -22,13 +22,27 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
 	const advertisement = new Advertisement(req.body);
 
-	advertisement.save((err, advertisementGuardado) => {
+	advertisement.save((err, advertisementSaved) => {
 		if (err) {
-			return next(err);
+			console.log('Error', err);
+			next(err);
+			return;
 		}
-		res.json({ success: true, advertisement: advertisementGuardado });
+		res.json({ success: true, result: advertisementSaved });
 	});
 });
 
+//PUT /
+router.put('/:id', (req, res, next) => {
+	const id = req.params.id;
+	Advertisement.findOneAndUpdate({ _id: id }, req.body, { new: true }, (err, advertisementUpdated) => {
+		if (err) {
+			console.log('Error', err);
+			next(err);
+			return;
+		}
+		res.json({ success: true, result: advertisementUpdated });
+	});
+});
 
 module.exports = router;
