@@ -14,11 +14,25 @@ router.get('/', (req, res, next) => {
 			next(err);
 			return;
 		}
-		res.json({ success: true, rows: lista });
+		res.json({ success: true, rows: lista }); // This method always returns an array
 	});
 });
 
-// POST /
+// GET / -> /apiv1/ads/id
+router.get('/:id', (req, res, next) => {
+	const id = req.params.id;
+
+	Advertisement.findOne({ _id: id }, (err, advertisement) => {
+		if (err) {
+			console.log('Error', err);
+			next(err);
+			return;
+		}
+		res.json({ success: true, row: advertisement });
+	});
+});
+
+// POST / -> /apiv1/ads
 router.post('/', (req, res, next) => {
 	const advertisement = new Advertisement(req.body);
 
@@ -32,9 +46,10 @@ router.post('/', (req, res, next) => {
 	});
 });
 
-//PUT /
+// PUT / -> /apiv1/ads/id
 router.put('/:id', (req, res, next) => {
 	const id = req.params.id;
+
 	Advertisement.findOneAndUpdate({ _id: id }, req.body, { new: true }, (err, advertisementUpdated) => {
 		if (err) {
 			console.log('Error', err);
@@ -42,6 +57,20 @@ router.put('/:id', (req, res, next) => {
 			return;
 		}
 		res.json({ success: true, result: advertisementUpdated });
+	});
+});
+
+// DELETE / -> /apiv1/ads/id
+router.delete('/:id', (req, res, next) => {
+	const id = req.params.id;
+
+	Advertisement.remove({ _id: id }, (err) => {
+		if (err) {
+			console.log('Error', err);
+			next(err);
+			return;
+		}
+		res.json({ success: true });
 	});
 });
 

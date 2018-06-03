@@ -24,6 +24,8 @@ const advertisementSchema = mongoose.Schema({
 		},
 		index: true
 	}
+}, {
+	collection: 'advertisements'
 });
 
 const Advertisement = mongoose.model('Advertisement', advertisementSchema);
