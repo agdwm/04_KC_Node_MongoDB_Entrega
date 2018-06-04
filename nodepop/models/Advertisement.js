@@ -29,6 +29,7 @@ const advertisementSchema = mongoose.Schema({
 // Add a static method to the model
 advertisementSchema.statics.list = (filter, callback) => {
 	const query = Advertisement.find(filter);
+	// console.log("CONSULTA", query);
 	query.exec(callback);
 };
 

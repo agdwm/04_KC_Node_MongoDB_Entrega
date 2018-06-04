@@ -7,21 +7,51 @@ const mongoose = require('mongoose');
 const Advertisement = mongoose.model('Advertisement');
 
 // GET / -> /apiv1/ads
-// FILTERS: // -> /apiv1/ads/?title=Apple&tags=lifestyle
+// FILTERS: // -> /apiv1/ads/?title=Apple&tags=lifestyle&tags=motor
 router.get('/', (req, res, next) => {
 
 	const title = req.query.title;
 	const tags = req.query.tags;
+	const isSale = req.query.isSale;
+	const price = req.query.price;
+
+	console.log("isSale", isSale);
 
 	const filter = {};
 
 	if (title) {
 		const regexp = new RegExp(`^${title}`, 'i');
-		filter.title = { $regex: regexp };
+		filter.title = {
+			$regex: regexp
+		};
 	}
 
 	if (tags) {
-		filter.tags = { $all: tags };
+		filter.tags = {
+			$all: tags
+		};
+	}
+
+	if (isSale) {
+		filter.isSale = isSale;
+	}
+
+	if (price) {
+		if (price.indexOf('-') >= 0) {
+			const range = price.split('-');
+			const pmin = range[0];
+			const pmax = range[1];
+
+			if (pmin) {
+				filter.price.$gte = pmin;
+			}
+
+			if (pmax) {
+				filter.price.$lte = pmax;
+			}
+		} else {
+			filter.price = price;
+		}
 	}
 
 	Advertisement.list(filter, (err, lista) => {
@@ -30,7 +60,10 @@ router.get('/', (req, res, next) => {
 			next(err);
 			return;
 		}
-		res.json({ success: true, rows: lista }); // This method always returns an array
+		res.json({
+			success: true,
+			rows: lista
+		}); // This method always returns an array
 	});
 });
 
@@ -38,13 +71,18 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
 	const id = req.params.id;
 
-	Advertisement.findOne({ _id: id }, (err, advertisement) => {
+	Advertisement.findOne({
+		_id: id
+	}, (err, advertisement) => {
 		if (err) {
 			console.log('Error', err);
 			next(err);
 			return;
 		}
-		res.json({ success: true, row: advertisement });
+		res.json({
+			success: true,
+			row: advertisement
+		});
 	});
 });
 
@@ -58,7 +96,10 @@ router.post('/', (req, res, next) => {
 			next(err);
 			return;
 		}
-		res.json({ success: true, result: advertisementSaved });
+		res.json({
+			success: true,
+			result: advertisementSaved
+		});
 	});
 });
 
@@ -66,13 +107,20 @@ router.post('/', (req, res, next) => {
 router.put('/:id', (req, res, next) => {
 	const id = req.params.id;
 
-	Advertisement.findOneAndUpdate({ _id: id }, req.body, { new: true }, (err, advertisementUpdated) => {
+	Advertisement.findOneAndUpdate({
+		_id: id
+	}, req.body, {
+		new: true
+	}, (err, advertisementUpdated) => {
 		if (err) {
 			console.log('Error', err);
 			next(err);
 			return;
 		}
-		res.json({ success: true, result: advertisementUpdated });
+		res.json({
+			success: true,
+			result: advertisementUpdated
+		});
 	});
 });
 
@@ -80,13 +128,17 @@ router.put('/:id', (req, res, next) => {
 router.delete('/:id', (req, res, next) => {
 	const id = req.params.id;
 
-	Advertisement.remove({ _id: id }, (err) => {
+	Advertisement.remove({
+		_id: id
+	}, (err) => {
 		if (err) {
 			console.log('Error', err);
 			next(err);
 			return;
 		}
-		res.json({ success: true });
+		res.json({
+			success: true
+		});
 	});
 });
 
