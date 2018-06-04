@@ -15,21 +15,19 @@ router.get('/', (req, res, next) => {
 	const isSale = req.query.isSale;
 	const price = req.query.price;
 
+	console.log("request", req);
 	console.log("isSale", isSale);
 
 	const filter = {};
 
 	if (title) {
+
 		const regexp = new RegExp(`^${title}`, 'i');
-		filter.title = {
-			$regex: regexp
-		};
+		filter.title = { $regex: regexp };
 	}
 
 	if (tags) {
-		filter.tags = {
-			$all: tags
-		};
+		filter.tags = {	$all: tags };
 	}
 
 	if (isSale) {
@@ -39,18 +37,22 @@ router.get('/', (req, res, next) => {
 	if (price) {
 		if (price.indexOf('-') >= 0) {
 			const range = price.split('-');
-			const pmin = range[0];
-			const pmax = range[1];
+			const pmin = parseFloat(range[0]);
+			const pmax = parseFloat(range[1]);
 
 			if (pmin) {
-				filter.price.$gte = pmin;
+				filter.price = {
+					$gte: pmin
+				};
 			}
 
 			if (pmax) {
-				filter.price.$lte = pmax;
+				filter.price = {
+					$lte: pmax
+				};
 			}
 		} else {
-			filter.price = price;
+			filter.price = parseFloat(price);
 		}
 	}
 
