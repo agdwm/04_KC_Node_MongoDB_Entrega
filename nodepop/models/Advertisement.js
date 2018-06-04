@@ -8,8 +8,8 @@ const advertisementSchema = mongoose.Schema({
 		type: String,
 		index: true
 	},
-	modality: {
-		type: String,
+	isSale: {
+		type: Boolean,
 		index: true
 	},
 	price: {
@@ -17,13 +17,11 @@ const advertisementSchema = mongoose.Schema({
 		index: true
 	},
 	photo: String,
-	tags: {
+	tags: [{
 		type: String,
-		enum: {
-			values: ['work', 'lifestyle', 'mobile', 'motor']
-		},
+		enum: ['work', 'lifestyle', 'mobile', 'motor'],
 		index: true
-	}
+	}]
 }, {
 	collection: 'advertisements'
 });
@@ -31,7 +29,6 @@ const advertisementSchema = mongoose.Schema({
 // Add a static method to the model
 advertisementSchema.statics.list = (filter, callback) => {
 	const query = Advertisement.find(filter);
-	console.log(query);
 	query.exec(callback);
 };
 

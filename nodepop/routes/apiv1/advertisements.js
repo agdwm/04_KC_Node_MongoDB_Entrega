@@ -7,16 +7,21 @@ const mongoose = require('mongoose');
 const Advertisement = mongoose.model('Advertisement');
 
 // GET / -> /apiv1/ads
-// FILTERS: // -> /apiv1/ads/?title=x
+// FILTERS: // -> /apiv1/ads/?title=Apple&tags=lifestyle
 router.get('/', (req, res, next) => {
 
 	const title = req.query.title;
+	const tags = req.query.tags;
 
 	const filter = {};
 
 	if (title) {
 		const regexp = new RegExp(`^${title}`, 'i');
 		filter.title = { $regex: regexp };
+	}
+
+	if (tags) {
+		filter.tags = { $all: tags };
 	}
 
 	Advertisement.list(filter, (err, lista) => {
