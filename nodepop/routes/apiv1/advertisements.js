@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const Advertisement = mongoose.model('Advertisement');
 
 // GET / -> /apiv1/ads
-// FILTERS: // -> /apiv1/ads/?title=Apple&tags=lifestyle&tags=motor
+// FILTERS: // -> /apiv1/ads?title=Apple&tags=lifestyle&tags=motor
 router.get('/', (req, res, next) => {
 
 	const title = req.query.title;
