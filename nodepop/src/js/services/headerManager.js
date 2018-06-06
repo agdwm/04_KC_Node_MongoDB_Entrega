@@ -8,6 +8,7 @@ export default class HeaderManager {
 
 	init() {
 		this.setupClickEventHandler();
+		this.languageService.specifyState();
 		this.languageService.checkStorageLang();
 	}
 
