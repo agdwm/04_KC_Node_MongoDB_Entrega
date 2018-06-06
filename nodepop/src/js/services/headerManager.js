@@ -13,6 +13,7 @@ export default class HeaderManager {
 	}
 
 	setupPopstateHandler() {
+		// Not refactor to jQuery !!
 		window.addEventListener('popstate', (e) => {
 			this.languageService.checkStateLang(e);
 		}, false);
