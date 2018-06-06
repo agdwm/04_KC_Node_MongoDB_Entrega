@@ -40,6 +40,7 @@ export default class LanguageService {
 	}
 
 	setUrlLang(lang) {
+		// Set the language to the query String
 		const stateObj = { lang };
 		const url = `?lang=${lang}`;
 		this.history.pushState(stateObj, lang, url);

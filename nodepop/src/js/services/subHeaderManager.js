@@ -17,6 +17,7 @@ export default class SubHeaderManager {
 	}
 
 	toggleOption(btn) {
-		btn.toggleClass('active');
+		this.btnMain.removeClass('active');
+		btn.addClass('active');
 	}
 }

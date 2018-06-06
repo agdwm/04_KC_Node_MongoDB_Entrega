@@ -29,8 +29,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routers
 app.use('/', 			require('./routes/index'));
 app.use('/users', 		require('./routes/users'));
-app.use('/apiv1/ads', 	require('./routes/apiv1/advertisements'));
 app.use('/apiv1/tags', 	require('./routes/apiv1/tags'));
+app.use('/apiv1/ads', 	require('./routes/apiv1/advertisements'));
+
 
 function isAPI(req) {
 	return req.originalUrl.indexOf('/api') === 0;
