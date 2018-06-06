@@ -1,21 +1,21 @@
 const $ = require('jquery');
 
 export default class HeaderManager {
-	constructor(languageService) {
-		this.languageService = languageService;
+	constructor(languageManager) {
+		this.languageManager = languageManager;
 		this.btnIdiom = $('.idiom_button');
 	}
 
 	init() {
-		this.setupClickEventHandler();
 		this.setupPopstateHandler();
-		this.languageService.checkStorageLang();
+		this.setupClickEventHandler();
+		this.languageManager.checkStorageLang();
 	}
 
 	setupPopstateHandler() {
-		// Not refactor to jQuery !!
+		// Not refactor to jQuery !! It doesn't work!
 		window.addEventListener('popstate', (e) => {
-			this.languageService.checkStateLang(e);
+			this.languageManager.checkStateLang(e);
 		}, false);
 	}
 
@@ -30,8 +30,8 @@ export default class HeaderManager {
 		this.btnIdiom.removeClass('active');
 		btn.addClass('active');
 		const dataLang = btn.attr('data-lang');
-		this.languageService.setStorageLang(dataLang);
-		this.languageService.setUrlLang(dataLang);
-		this.languageService.setBtnLang(dataLang);
+		this.languageManager.setStorageLang(dataLang);
+		this.languageManager.setUrlLang(dataLang);
+		this.languageManager.setBtnLang(dataLang);
 	}
 }

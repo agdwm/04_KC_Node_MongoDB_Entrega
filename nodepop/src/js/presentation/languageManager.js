@@ -3,6 +3,7 @@ const $ = require('jquery');
 export default class LanguageService {
 	constructor() {
 		this.defaultLang = 'es';
+		this.possibleLangs = ['es', 'en'];
 		this.history = window.history;
 		this.localStorage = localStorage;
 		this.btnIdiom = $('.idiom_button');
@@ -15,9 +16,9 @@ export default class LanguageService {
 				this.setUrlLang(this.defaultLang);
 				this.setBtnLang(this.defaultLang);
 			} else {
-				this.getStorageLang();
-				this.setUrlLang(this.getStorageLang());
-				this.setBtnLang(this.getStorageLang());
+				const storgeLangVal = this.getStorageLang();
+				this.setUrlLang(storgeLangVal);
+				this.setBtnLang(storgeLangVal);
 			}
 		}
 	}
@@ -41,16 +42,26 @@ export default class LanguageService {
 
 	setUrlLang(lang) {
 
+		const currentUrl = window.location.href;
+		const currentUrlToArray = currentUrl.split('/');
+		let position = 0;
+		let url = `${currentUrl}${lang}`;
 		const stateObj = { lang };
 
-		// Set the language to the url params
-		const url = lang;
+		// check if 'lang' already exists in the url
+		for (let i = 0; i < this.possibleLangs.length; i++) {
+			if (currentUrlToArray.indexOf(this.possibleLangs[i]) >= 0) {
+				position = currentUrlToArray.indexOf(this.possibleLangs[i]);
+				break;
+			}
+		}
+
+		if (position !== 0) {
+			currentUrlToArray[position] = lang;
+			url = currentUrlToArray.join('/');
+		}
+
 		this.history.pushState(stateObj, lang, url);
-
-		// Set the language to the query String
-		// const url = `?lang=${lang}`;
-		// this.history.pushState(stateObj, lang, url);
-
 	}
 
 	setBtnLang(lang) {
