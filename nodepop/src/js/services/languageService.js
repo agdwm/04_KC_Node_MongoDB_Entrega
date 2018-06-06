@@ -4,6 +4,7 @@ export default class LanguageService {
 	constructor() {
 		this.defaultLang = 'es';
 		this.history = window.history;
+		this.localStorage = localStorage;
 		this.btnIdiom = $('.idiom_button');
 	}
 
@@ -11,33 +12,31 @@ export default class LanguageService {
 		if (typeof (Storage) !== 'undefined') {
 			if (!localStorage.getItem('lang')) {
 				this.setStorageLang(this.defaultLang);
+				this.setUrlLang(this.defaultLang);
+				this.setBtnLang(this.defaultLang);
 			} else {
 				this.getStorageLang();
+				this.setUrlLang(this.getStorageLang());
+				this.setBtnLang(this.getStorageLang());
 			}
 		}
 	}
 
 	setStorageLang(lang) {
-		localStorage.setItem('lang', lang);
-		this.setUrlLang(lang);
-		this.setBtnLang(lang);
+		this.localStorage.setItem('lang', lang);
 	}
 
 	getStorageLang() {
-		const currentLang = localStorage.getItem('lang');
-		this.setUrlLang(currentLang);
-		this.setBtnLang(currentLang);
+		const currentLang = this.localStorage.getItem('lang');
+		return currentLang;
 	}
 
-	specifyState() {
-		window.addEventListener('popstate', (event) => {
-			if (event.state) {
-				const stateLang = event.state.lang;
-				console.log('lang', stateLang);
-				this.setBtnLang(stateLang);
-				localStorage.setItem('lang', stateLang);
-			}
-		}, false);
+	checkStateLang(e) {
+		if (e.state) {
+			const stateLang = e.state.lang;
+			this.setBtnLang(stateLang);
+			this.setStorageLang(stateLang);
+		}
 	}
 
 	setUrlLang(lang) {

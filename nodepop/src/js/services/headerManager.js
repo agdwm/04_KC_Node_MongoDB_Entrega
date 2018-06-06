@@ -8,8 +8,14 @@ export default class HeaderManager {
 
 	init() {
 		this.setupClickEventHandler();
-		this.languageService.specifyState();
+		this.setupPopstateHandler();
 		this.languageService.checkStorageLang();
+	}
+
+	setupPopstateHandler() {
+		window.addEventListener('popstate', (e) => {
+			this.languageService.checkStateLang(e);
+		}, false);
 	}
 
 	setupClickEventHandler() {
@@ -24,5 +30,7 @@ export default class HeaderManager {
 		btn.addClass('active');
 		const dataLang = btn.attr('data-lang');
 		this.languageService.setStorageLang(dataLang);
+		this.languageService.setUrlLang(dataLang);
+		this.languageService.setBtnLang(dataLang);
 	}
 }
