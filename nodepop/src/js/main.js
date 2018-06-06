@@ -4,17 +4,17 @@ window.$ = window.jQuery = require('jquery');
 import PaginateService from './services/paginateService';
 import LanguageService from './services/languageService';
 
-// MANAGERS
-import HeaderManager from './services/headerManager';
-import SubHeaderManager from './services/subHeaderManager';
-import FiltersManager from './services/filtersManager';
-import AdsListManager from './services/adsListManager';
+// PRESENTATION
+import HeaderManager from './presentation/headerManager';
+import SubHeaderManager from './presentation/subHeaderManager';
+import FiltersManager from './presentation/filtersManager';
+import AdsListManager from './presentation/adsListManager';
 
 // Services
 const paginateService = new PaginateService();
 const languageService = new LanguageService();
 
-// Managers
+// Presentation
 const headerManager = new HeaderManager(languageService);
 const subHeaderManager = new SubHeaderManager();
 const filtersManager = new FiltersManager();

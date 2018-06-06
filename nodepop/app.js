@@ -11,7 +11,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use((request, response, next) => {
-	console.log('He recibido una petición');
+	// console.log('He recibido una petición');
 	next();
 });
 
