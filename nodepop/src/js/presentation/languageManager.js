@@ -43,25 +43,31 @@ export default class LanguageService {
 	setUrlLang(lang) {
 
 		const currentUrl = window.location.href;
-		const currentUrlToArray = currentUrl.split('/');
+		const currentUrlString =  window.location.search;
+		const currentUrlPath = currentUrl.replace(currentUrlString, '');
+		const currentUrlPathToArray = currentUrlPath.split('/');
+
 		let position = 0;
+
+		// On first load
 		let url = `${currentUrl}${lang}`;
+
 		const stateObj = { lang };
 
 		// check if 'lang' already exists in the url
 		for (let i = 0; i < this.possibleLangs.length; i++) {
-			if (currentUrlToArray.indexOf(this.possibleLangs[i]) >= 0) {
-				position = currentUrlToArray.indexOf(this.possibleLangs[i]);
+			if (currentUrlPathToArray.indexOf(this.possibleLangs[i]) >= 0) {
+				position = currentUrlPathToArray.indexOf(this.possibleLangs[i]);
 				break;
 			}
 		}
 
 		if (position !== 0) {
-			currentUrlToArray[position] = lang;
-			url = currentUrlToArray.join('/');
+			currentUrlPathToArray[position] = lang;
+			url = currentUrlPathToArray.join('/');
 		}
 
-		this.history.pushState(stateObj, lang, url);
+		this.history.pushState(stateObj, lang, `${url}${currentUrlString}`);
 	}
 
 	setBtnLang(lang) {
