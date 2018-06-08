@@ -1,7 +1,12 @@
+'use strict';
+import UrlManager from './UrlManager';
+
 const $ = require('jquery');
 
-export default class FiltersManager {
+export default class FiltersManager extends UrlManager {
+
 	constructor() {
+		super();
 		this.btnFilter = $('.filter-item');
 	}
 
@@ -11,7 +16,11 @@ export default class FiltersManager {
 
 	setupClickEventHandler() {
 		this.btnFilter.on('click', (e) => {
-			this.toggleFilter($(e.currentTarget));
+			const currentTarget = $(e.currentTarget);
+
+			this.toggleFilter(currentTarget);
+			this.getFilterVal(currentTarget);
+			// this.setUrlQueryParam(this.getFilterVal(currentTarget));
 			return false;
 		});
 	}
@@ -20,5 +29,8 @@ export default class FiltersManager {
 		btn.toggleClass('active');
 	}
 
-	
+	getFilterVal(btn) {
+		const dataFilterVal = btn.attr('data-filter');
+		return dataFilterVal;
+	}
 }
