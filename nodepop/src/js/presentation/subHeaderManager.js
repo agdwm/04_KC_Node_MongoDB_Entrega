@@ -23,7 +23,7 @@ export default class SubHeaderManager extends UrlManager {
 
 			this.toggleOption(currentTarget);
 			this.getModalityVal(currentTarget);
-			this.setUrlQueryParam(this.getModalityVal(currentTarget));
+			this.setUrlModality(this.getModalityVal(currentTarget));
 			return false;
 		});
 	}
