@@ -26,10 +26,10 @@ const advertisementSchema = mongoose.Schema({
 
 // Add a statics methods to the model
 advertisementSchema.statics.addFilter = (req) => {
-	const title = req.query.title;
-	const tags = req.query.tags;
-	const isSale = req.query.isSale;
-	const price = req.query.price;
+	const { title } = req.query;
+	const { tags } = req.query;
+	const { isSale } = req.query;
+	const { price } = req.query;
 
 	const filter = {};
 
@@ -75,8 +75,6 @@ advertisementSchema.statics.list = (filter, callback) => {
 	// console.log("CONSULTA", query);
 	query.exec(callback);
 };
-
-
 
 const Advertisement = mongoose.model('Advertisement', advertisementSchema);
 module.exports = Advertisement;

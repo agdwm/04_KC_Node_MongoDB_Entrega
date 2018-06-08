@@ -27,8 +27,9 @@ router.get('/', (req, res, next) => {
 
 // GET / -> /apiv1/ads/id
 router.get('/:id', (req, res, next) => {
-	const id = req.params.id;
+	const { id } = req.params;
 
+	console.log('id', id);
 	Advertisement.findOne({
 		_id: id
 	}, (err, advertisement) => {
@@ -63,7 +64,7 @@ router.post('/', (req, res, next) => {
 
 // PUT / -> /apiv1/ads/id
 router.put('/:id', (req, res, next) => {
-	const id = req.params.id;
+	const { id } = req.params;
 
 	Advertisement.findOneAndUpdate({
 		_id: id
@@ -84,7 +85,7 @@ router.put('/:id', (req, res, next) => {
 
 // DELETE / -> /apiv1/ads/id
 router.delete('/:id', (req, res, next) => {
-	const id = req.params.id;
+	const { id } = req.params;
 
 	Advertisement.remove({
 		_id: id
