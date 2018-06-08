@@ -10,51 +10,7 @@ const Advertisement = mongoose.model('Advertisement');
 // FILTERS: // -> /apiv1/ads?title=Apple&tags=lifestyle&tags=motor
 router.get('/', (req, res, next) => {
 
-	const title = req.query.title;
-	const tags = req.query.tags;
-	const isSale = req.query.isSale;
-	const price = req.query.price;
-
-	console.log("request", req);
-	console.log("isSale", isSale);
-
-	const filter = {};
-
-	if (title) {
-
-		const regexp = new RegExp(`^${title}`, 'i');
-		filter.title = { $regex: regexp };
-	}
-
-	if (tags) {
-		filter.tags = {	$all: tags };
-	}
-
-	if (isSale) {
-		filter.isSale = isSale;
-	}
-
-	if (price) {
-		if (price.indexOf('-') >= 0) {
-			const range = price.split('-');
-			const pmin = parseFloat(range[0]);
-			const pmax = parseFloat(range[1]);
-
-			if (pmin) {
-				filter.price = {
-					$gte: pmin
-				};
-			}
-
-			if (pmax) {
-				filter.price = {
-					$lte: pmax
-				};
-			}
-		} else {
-			filter.price = parseFloat(price);
-		}
-	}
+	const filter = Advertisement.addFilter(req);
 
 	Advertisement.list(filter, (err, lista) => {
 		if (err) {

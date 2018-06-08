@@ -1,6 +1,4 @@
-
 'use strict';
-
 const mongoose = require('mongoose');
 
 const advertisementSchema = mongoose.Schema({
@@ -26,12 +24,59 @@ const advertisementSchema = mongoose.Schema({
 	collection: 'advertisements'
 });
 
-// Add a static method to the model
+// Add a statics methods to the model
+advertisementSchema.statics.addFilter = (req) => {
+	const title = req.query.title;
+	const tags = req.query.tags;
+	const isSale = req.query.isSale;
+	const price = req.query.price;
+
+	const filter = {};
+
+	if (title) {
+		const regexp = new RegExp(`^${title}`, 'i');
+		filter.title = { $regex: regexp };
+	}
+
+	if (tags) {
+		filter.tags = {	$all: tags };
+	}
+
+	if (isSale) {
+		filter.isSale = isSale;
+	}
+
+	if (price) {
+		if (price.indexOf('-') >= 0) {
+			const range = price.split('-');
+			const pmin = parseFloat(range[0]);
+			const pmax = parseFloat(range[1]);
+
+			if (pmin) {
+				filter.price = {
+					$gte: pmin
+				};
+			}
+
+			if (pmax) {
+				filter.price = {
+					$lte: pmax
+				};
+			}
+		} else {
+			filter.price = parseFloat(price);
+		}
+	}
+	return filter;
+};
+
 advertisementSchema.statics.list = (filter, callback) => {
 	const query = Advertisement.find(filter);
 	// console.log("CONSULTA", query);
 	query.exec(callback);
 };
+
+
 
 const Advertisement = mongoose.model('Advertisement', advertisementSchema);
 module.exports = Advertisement;
