@@ -34,6 +34,7 @@ app.use('/apiv1/ads', 	require('./routes/apiv1/advertisements'));
 
 
 function isAPI(req) {
+	// if it's a request to the API
 	return req.originalUrl.indexOf('/api') === 0;
 }
 
