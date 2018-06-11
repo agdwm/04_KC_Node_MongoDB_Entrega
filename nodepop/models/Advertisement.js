@@ -1,4 +1,5 @@
 'use strict';
+
 const mongoose = require('mongoose');
 
 const advertisementSchema = mongoose.Schema({
@@ -72,7 +73,6 @@ advertisementSchema.statics.addFilter = (req) => {
 
 advertisementSchema.statics.list = (filter, callback) => {
 	const query = Advertisement.find(filter);
-	// console.log("CONSULTA", query);
 	query.exec(callback);
 };
 

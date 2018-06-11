@@ -9,7 +9,6 @@ const Advertisement = mongoose.model('Advertisement');
 // GET / -> /apiv1/ads
 // FILTERS: // -> /apiv1/ads?title=Apple&tags=lifestyle&tags=motor
 router.get('/', (req, res, next) => {
-
 	const filter = Advertisement.addFilter(req);
 
 	Advertisement.list(filter, (err, lista) => {
@@ -18,7 +17,7 @@ router.get('/', (req, res, next) => {
 			next(err);
 			return;
 		}
-		res.json({
+		res.status(200).json({
 			success: true,
 			rows: lista
 		}); // This method always returns an array
@@ -38,7 +37,7 @@ router.get('/:id', (req, res, next) => {
 			next(err);
 			return;
 		}
-		res.json({
+		res.status(200).json({
 			success: true,
 			row: advertisement
 		});
@@ -55,7 +54,7 @@ router.post('/', (req, res, next) => {
 			next(err);
 			return;
 		}
-		res.json({
+		res.status(201).json({
 			success: true,
 			result: advertisementSaved
 		});
@@ -76,7 +75,7 @@ router.put('/:id', (req, res, next) => {
 			next(err);
 			return;
 		}
-		res.json({
+		res.status(202).json({
 			success: true,
 			result: advertisementUpdated
 		});
@@ -95,7 +94,7 @@ router.delete('/:id', (req, res, next) => {
 			next(err);
 			return;
 		}
-		res.json({
+		res.status(204).json({
 			success: true
 		});
 	});

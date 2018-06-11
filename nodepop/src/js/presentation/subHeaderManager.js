@@ -1,4 +1,5 @@
 'use strict';
+
 import UrlManager from './UrlManager';
 
 const $ = require('jquery');
@@ -24,6 +25,8 @@ export default class SubHeaderManager extends UrlManager {
 			this.toggleOption(currentTarget);
 			this.getModalityVal(currentTarget);
 			this.setUrlModality(this.getModalityVal(currentTarget));
+
+			// this.getAdvertisements();
 			return false;
 		});
 	}
@@ -37,5 +40,12 @@ export default class SubHeaderManager extends UrlManager {
 		const dataModality = btn.attr('data-modality');
 		return dataModality;
 	}
+
+	// AJAX Request -> move to Services
+	// getAdvertisements() {
+	// 	fetch('http://localhost:3000', (err, result) => {
+	// 		result
+	// 	});
+	// }
 }
 

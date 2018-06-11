@@ -1,4 +1,5 @@
 'use strict';
+
 import UrlManager from './UrlManager';
 
 const $ = require('jquery');

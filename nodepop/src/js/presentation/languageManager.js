@@ -1,3 +1,5 @@
+'use strict';
+
 const $ = require('jquery');
 
 export default class LanguageService {
