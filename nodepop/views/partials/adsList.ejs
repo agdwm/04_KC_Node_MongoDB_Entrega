@@ -1,36 +1,38 @@
-<section class="ad-list" id="ad-list">
-	<% advertisements.forEach((advertisement) => { %>
-		<% if (advertisement.isSale === true) { %>
-			<a href="" class="ad sell">
-		<% } else { %>
-			<a href="" class="ad buy">
-		<% } %>
-				<figure class="ad-image">
-					<img src="<%= advertisement.photo %>" alt="">
-					<figcaption>
-						<h4 class="ad-title"><%= advertisement.title %></h4>
-							<div class="ad_tags">
-								<% advertisement.tags.forEach((tag) => { %>
-									<span><%= tag %></span>
-								<% }) %>
-							</div>
 
-						<div class="ad_details">
-							<div class="ad_type">
-								<% if (advertisement.isSale === true) { %>
-									<span>Venta</span>
-								<% } else { %>
-									<span>Compra</span>
-								<% } %>
-							</div>
+	<% if (advertisements) { %>
+		<% advertisements.forEach((advertisement) => { %>
+			<% if (advertisement.isSale === true) { %>
+				<a href="" class="ad sell">
+			<% } else { %>
+				<a href="" class="ad buy">
+			<% } %>
+					<figure class="ad-image">
+						<img src="<%= advertisement.photo %>" alt="">
+						<figcaption>
+							<h4 class="ad-title"><%= advertisement.title %></h4>
+								<div class="ad_tags">
+									<% advertisement.tags.forEach((tag) => { %>
+										<span><%= tag %></span>
+									<% }) %>
+								</div>
 
-							<div class="ad_price">
-								<span><%= advertisement.price %></span>
-								<span>€</span>
+							<div class="ad_details">
+								<div class="ad_type">
+									<% if (advertisement.isSale === true) { %>
+										<span>Venta</span>
+									<% } else { %>
+										<span>Compra</span>
+									<% } %>
+								</div>
+
+								<div class="ad_price">
+									<span><%= advertisement.price %></span>
+									<span>€</span>
+								</div>
 							</div>
-						</div>
-					</figcaption>
-				</figure>
-			</a>
-	<% }) %>
-</section>
+						</figcaption>
+					</figure>
+				</a>
+		<% }) %>
+	<% } %>
+

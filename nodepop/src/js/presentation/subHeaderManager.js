@@ -12,6 +12,7 @@ export default class SubHeaderManager extends UrlManager {
 		this.btnMain = $('.main_button');
 		this.keyModality = 'isSale';
 		this.possibleModalities = ['true', 'false'];
+		this.adsContainter = $('#ad-list');
 	}
 
 	init() {
@@ -25,8 +26,8 @@ export default class SubHeaderManager extends UrlManager {
 			this.toggleOption(currentTarget);
 			this.getModalityVal(currentTarget);
 			this.setUrlModality(this.getModalityVal(currentTarget));
-
-			// this.getAdvertisements();
+			this.loadAds();
+			//this.getAdvertisements();
 			return false;
 		});
 	}
@@ -41,11 +42,25 @@ export default class SubHeaderManager extends UrlManager {
 		return dataModality;
 	}
 
-	// AJAX Request -> move to Services
-	// getAdvertisements() {
-	// 	fetch('http://localhost:3000', (err, result) => {
-	// 		result
-	// 	});
-	// }
+	loadAds() {
+		const currentUrlString =  window.location.href;
+		// console.log('currentUrlString', currentUrlString);
+        $.ajax({
+			type: 'GET',
+			url: currentUrlString,
+			contentType: 'application/json',
+			// data: JSON.stringify({peticionAjax: true}),
+            success: (advertisements) => {
+				this.adsContainter.empty();
+				this.adsContainter.html(advertisements);
+				// console.log("AJAX", advertisements);
+				console.log('currentUrlString', currentUrlString);
+			},
+            error: (req, status, err) => {
+				console.log('something went wrong', status, err );
+			}
+        });
+
+	}
 }
 

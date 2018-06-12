@@ -16,7 +16,9 @@ router.get('/:lang(es|en)?', [
 ], (req, res, next) => {
 	validationResult(req).throw();
 
+	// const xhr = ;
 	const filter = Advertisement.addFilter(req);
+	console.log('FILTER', filter);
 
 	Advertisement.list(filter, (err, advertisements) => {
 		if (err) {
@@ -24,7 +26,13 @@ router.get('/:lang(es|en)?', [
 			next(err);
 			return;
 		}
-		console.log(advertisements);
+		// console.log("SERVIDOR", advertisements);
+		if (req.xhr) {
+			res.render('partials/adsList', {
+				advertisements: advertisements
+			});
+			return;
+		}
 		res.render('index', {
 			title: 'Nodepop .',
 			advertisements: advertisements

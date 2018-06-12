@@ -1,6 +1,7 @@
 window.$ = window.jQuery = require('jquery');
 
 // SERVICES
+import AdsService from './services/AdsService';
 import PaginateService from './services/PaginateService';
 
 // PRESENTATION
@@ -11,6 +12,7 @@ import FiltersManager from './presentation/FiltersManager';
 import AdsListManager from './presentation/AdsListManager';
 
 // Services
+const adsService = new AdsService();
 const paginateService = new PaginateService();
 const languageManager = new LanguageManager();
 
@@ -18,7 +20,7 @@ const languageManager = new LanguageManager();
 const headerManager = new HeaderManager(languageManager);
 const subHeaderManager = new SubHeaderManager();
 const filtersManager = new FiltersManager();
-const adsListManager = new AdsListManager('#ad-list', paginateService);
+const adsListManager = new AdsListManager('#ad-list', adsService, paginateService);
 
 headerManager.init();
 subHeaderManager.init();
