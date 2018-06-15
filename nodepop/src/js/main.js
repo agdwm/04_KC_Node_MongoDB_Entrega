@@ -9,7 +9,6 @@ import LanguageManager from './presentation/LanguageManager';
 import HeaderManager from './presentation/HeaderManager';
 import SubHeaderManager from './presentation/SubHeaderManager';
 import FiltersManager from './presentation/FiltersManager';
-import AdsListManager from './presentation/AdsListManager';
 
 // Services
 const adsService = new AdsService();
@@ -18,11 +17,9 @@ const languageManager = new LanguageManager();
 
 // Presentation
 const headerManager = new HeaderManager(languageManager);
-const subHeaderManager = new SubHeaderManager();
+const subHeaderManager = new SubHeaderManager(adsService);
 const filtersManager = new FiltersManager();
-const adsListManager = new AdsListManager('#ad-list', adsService, paginateService);
 
 headerManager.init();
 subHeaderManager.init();
 filtersManager.init();
-adsListManager.init();

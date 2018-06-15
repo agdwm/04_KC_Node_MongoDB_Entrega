@@ -4,12 +4,13 @@ const $ = require('jquery');
 
 export default class AdsService {
 
-	constructor() {
-		//this.url = url;
-		this.url = 'http://localhost:3000';
-	}
-
-	list(successCallback, errorCallback) {
-
+	getList(currentUrl, successCallback, errorCallback) {
+		$.ajax({
+			url: currentUrl,
+			type: 'GET',
+			contentType: 'application/json',
+			success: successCallback,
+            error: errorCallback
+		});
     }
 }

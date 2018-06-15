@@ -18,7 +18,7 @@ router.get('/:lang(es|en)?', [
 
 	// const xhr = ;
 	const filter = Advertisement.addFilter(req);
-	console.log('FILTER', filter);
+	// console.log('FILTER', filter);
 
 	Advertisement.list(filter, (err, advertisements) => {
 		if (err) {
