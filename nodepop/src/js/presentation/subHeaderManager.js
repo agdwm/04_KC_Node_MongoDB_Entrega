@@ -24,7 +24,7 @@ export default class SubHeaderManager extends UrlManager {
 		this.btnMain.on('click', (e) => {
 			const currentTarget = $(e.currentTarget);
 
-			this.toggleOption(currentTarget);
+			this.switchOption(currentTarget);
 			this.getModalityVal(currentTarget);
 			this.setUrlModality(this.getModalityVal(currentTarget));
 			this.loadAds();
@@ -32,7 +32,7 @@ export default class SubHeaderManager extends UrlManager {
 		});
 	}
 
-	toggleOption(btn) {
+	switchOption(btn) {
 		this.btnMain.removeClass('active');
 		btn.addClass('active');
 	}
@@ -43,7 +43,7 @@ export default class SubHeaderManager extends UrlManager {
 	}
 
 	loadAds() {
-		const currentUrl =  window.location.href;
+		const currentUrl = window.location.href;
 
 		this.adsService.getList(
 			currentUrl,

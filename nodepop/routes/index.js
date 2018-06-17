@@ -48,7 +48,7 @@ router.get('/:lang(es|en)?', [
 			const possibleValues = ['lifestyle', 'work', 'mobile', 'motor'];
 			const currentTags = [];
 
-			if (querytags.length === 1) {
+			if (typeof querytags === 'string') {
 				if (possibleValues.indexOf(querytags) === -1) {
 					return false;
 				}
