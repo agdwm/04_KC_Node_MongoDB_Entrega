@@ -11,9 +11,9 @@ const Advertisement = mongoose.model('Advertisement');
 
 /* GET home page. */
 router.get('/:lang(es|en)?', [
-	// Query String Validations wity express-validator
-	query('isSale').isBoolean().optional().withMessage('debe ser uno de los siguientes valores: true o false'),
-	query('price').custom((value) => {
+	// Query String VALIDATIONS with 'express-validator'
+	query('isSale').isBoolean().optional().withMessage('debe ser uno de los siguientes valores: "true" o "false"'),
+	query('price').optional().custom((value) => {
 		const price = parseFloat(value);
 
 		if (value.indexOf('-') >= 0) {
@@ -43,6 +43,30 @@ router.get('/:lang(es|en)?', [
 		}
 		return false;
 	}).withMessage('debe ser un valor numérico o un rango válido'),
+	query('tags').optional().custom((querytags) => {
+		if (querytags) {
+			const possibleValues = ['lifestyle', 'work', 'mobile', 'motor'];
+			const currentTags = [];
+
+			if (querytags.length === 1) {
+				if (possibleValues.indexOf(querytags) === -1) {
+					return false;
+				}
+			} else {
+				for (let i = 0; i < querytags.length; i++) {
+					if (possibleValues.indexOf(querytags[i]) === -1) {
+						return false;
+					}
+					if (currentTags.indexOf(querytags[i]) >= 0) {
+						return false;
+					}
+					currentTags.push(querytags[i]);
+				}
+			}
+			return true;
+		}
+		return true;
+	}).withMessage('debe ser uno de los siguientes valores: "lifestyle", "work", "mobile" or "motor" y no puede estar repetido'),
 ], (req, res, next) => {
 	validationResult(req).throw();
 
