@@ -21,7 +21,7 @@ export default class FiltersManager extends UrlManager {
 
 			this.toggleFilter(currentTarget);
 			this.getFilterVal(currentTarget);
-			// this.setUrlQueryParam(this.getFilterVal(currentTarget));
+			this.setUrlFilter(this.getFilterVal(currentTarget));
 			return false;
 		});
 	}
@@ -31,7 +31,8 @@ export default class FiltersManager extends UrlManager {
 	}
 
 	getFilterVal(btn) {
-		const dataFilterVal = btn.attr('data-filter');
-		return dataFilterVal;
+		const dataFilter = btn.attr('data-filter');
+		return dataFilter;
 	}
+
 }
