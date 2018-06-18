@@ -10,7 +10,8 @@ export default class UrlManager {
 		this.history = window.history;
 		this.urlPath = this.url.replace(this.urlString, '');
 		this.keyModality = 'isSale';
-		// this.possibleModalities = ['true', 'false'];
+		this.keyFilter = 'tags';
+		this.possibleModalities = ['true', 'false'];
 		this.possibleTags = ['work', 'lifestyle', 'motor', 'mobile'];
 		this.adsContainter = $('#ad-list');
 	}
@@ -47,6 +48,9 @@ export default class UrlManager {
 					queryParam = cleanedUrl[i];
 				}
 				newQueryParamArr.push(queryParam);
+			}
+			if (!newQueryParamArr.includes(`${this.keyModality}=${modality}`)) {
+				newQueryParamArr.push(`${this.keyModality}=${modality}`);
 			}
 		} else {
 			queryParam = `${this.keyModality}=${modality}`;
@@ -87,7 +91,6 @@ export default class UrlManager {
 			let queryParamKey = '';
 			let queryParamVal = '';
 			let newTagsString = '';
-			
 			let newcleanedUrl = '';
 
 			for (let i = 0; i < cleanedUrl.length; i++) {
@@ -96,7 +99,7 @@ export default class UrlManager {
 				queryParamVal = queryParam[1];
 
 				// el par (clave=valor) es de tipo "tags"
-				if (queryParamKey === 'tags') {
+				if (queryParamKey === this.keyFilter) {
 					// este tag Ya está en la url
 					if (queryParamVal === filter) {
 						positionArray.push(i);
@@ -104,7 +107,7 @@ export default class UrlManager {
 						newTag = `${queryParamKey}=${filter}`;
 					}
 				} else if (this.possibleTags.includes(filter)) {
-					newTag = `tags=${filter}`;
+					newTag = `${this.keyFilter}=${filter}`;
 				}
 			}
 
@@ -144,7 +147,7 @@ export default class UrlManager {
 			this.history.pushState(stateObj, filter, newUrl);
 		} else {
 			console.log('url vacia');
-			newTag = `tags=${filter}`;
+			newTag = `${this.keyFilter}=${filter}`;
 			newUrl = `${this.urlPath}?${newTag}`;
 			this.history.pushState(stateObj, filter, newUrl);
 		} 
