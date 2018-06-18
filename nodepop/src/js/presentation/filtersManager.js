@@ -6,8 +6,9 @@ const $ = require('jquery');
 
 export default class FiltersManager extends UrlManager {
 
-	constructor() {
+	constructor(adsService) {
 		super();
+		this.adsService = adsService;
 		this.btnFilter = $('.filter-item');
 	}
 
@@ -22,6 +23,7 @@ export default class FiltersManager extends UrlManager {
 			this.toggleFilter(currentTarget);
 			this.getFilterVal(currentTarget);
 			this.setUrlFilter(this.getFilterVal(currentTarget));
+			this.loadAds();
 			return false;
 		});
 	}
@@ -33,6 +35,26 @@ export default class FiltersManager extends UrlManager {
 	getFilterVal(btn) {
 		const dataFilter = btn.attr('data-filter');
 		return dataFilter;
+	}
+
+	loadAds() {
+		const currentUrl = window.location.href;
+
+		this.adsService.getList(
+			currentUrl,
+			(ads) => {
+				if (ads) {
+					this.renderAds(ads);
+				}
+			},
+			(req, status, err) => {
+				console.log('something went wrong', status, err );
+			}
+		);
+	}
+
+	renderAds(ads) {
+		this.adsContainter.html(ads);
 	}
 
 }

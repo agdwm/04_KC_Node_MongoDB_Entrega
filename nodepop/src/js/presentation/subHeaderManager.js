@@ -9,9 +9,8 @@ export default class SubHeaderManager extends UrlManager {
 	constructor(adsService) {
 		super();
 		this.adsService = adsService;
-		
 		this.btnMain = $('.main_button');
-		this.adsContainter = $('#ad-list');
+		// this.adsContainter = $('#ad-list');
 	}
 
 	init() {

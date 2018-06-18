@@ -18,7 +18,7 @@ const languageManager = new LanguageManager();
 // Presentation
 const headerManager = new HeaderManager(languageManager);
 const subHeaderManager = new SubHeaderManager(adsService);
-const filtersManager = new FiltersManager();
+const filtersManager = new FiltersManager(adsService);
 
 headerManager.init();
 subHeaderManager.init();

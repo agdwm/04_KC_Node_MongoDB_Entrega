@@ -12,10 +12,10 @@ export default class UrlManager {
 		this.keyModality = 'isSale';
 		// this.possibleModalities = ['true', 'false'];
 		this.possibleTags = ['work', 'lifestyle', 'motor', 'mobile'];
+		this.adsContainter = $('#ad-list');
 	}
 
 	setUrlModality(modality) {
-
 		let cleanedUrl = [];
 		let queryParam = '';
 		let queryParamKey = '';
@@ -65,23 +65,19 @@ export default class UrlManager {
 
 	setUrlFilter(filter) {
 		let cleanedUrl = [];
-		const newQueryParamArr = [];
 		let newQueryParamString = '';
 		const urlString = window.location.search;
 		const stateObj = { filter };
 		let newUrl = '';
-
-		console.log(filter);
+		let newTag = '';
 
 		if (urlString !== '') {
 			const delimiters = ['?', '&'];
 			const urlStringToArray = urlString.split(new RegExp(`[${delimiters}]`, 'g'));
-			// console.log('urlStringToArray', urlStringToArray);
 
 			cleanedUrl = urlStringToArray.filter((val) => {
 				return val !== '';
 			});
-			// console.log('cleanedUrl', cleanedUrl);
 		}
 
 		if (cleanedUrl.length !== 0) {
@@ -91,7 +87,7 @@ export default class UrlManager {
 			let queryParamKey = '';
 			let queryParamVal = '';
 			let newTagsString = '';
-			let newTag = '';
+			
 			let newcleanedUrl = '';
 
 			for (let i = 0; i < cleanedUrl.length; i++) {
@@ -101,7 +97,6 @@ export default class UrlManager {
 
 				// el par (clave=valor) es de tipo "tags"
 				if (queryParamKey === 'tags') {
-					console.log('filter', filter);
 					// este tag Ya está en la url
 					if (queryParamVal === filter) {
 						positionArray.push(i);
@@ -115,7 +110,6 @@ export default class UrlManager {
 
 			if (positionArray.length >= 1) {
 				for (let i = 0; i < positionArray.length; i++) {
-					console.log(cleanedUrl);
 					cleanedUrl.splice(positionArray[i], 1);
 				}
 			} else {
@@ -148,6 +142,11 @@ export default class UrlManager {
 
 			newUrl = `${this.urlPath}${newQueryParamString}`;
 			this.history.pushState(stateObj, filter, newUrl);
-		}
+		} else {
+			console.log('url vacia');
+			newTag = `tags=${filter}`;
+			newUrl = `${this.urlPath}?${newTag}`;
+			this.history.pushState(stateObj, filter, newUrl);
+		} 
 	}
 }
