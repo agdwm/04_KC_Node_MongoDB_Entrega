@@ -67,15 +67,15 @@ export default class UrlManager {
 		let cleanedUrl = [];
 		const newQueryParamArr = [];
 		let newQueryParamString = '';
-
+		const urlString = window.location.search;
 		const stateObj = { filter };
 		let newUrl = '';
 
 		console.log(filter);
 
-		if (this.urlString !== '') {
+		if (urlString !== '') {
 			const delimiters = ['?', '&'];
-			const urlStringToArray = this.urlString.split(new RegExp(`[${delimiters}]`, 'g'));
+			const urlStringToArray = urlString.split(new RegExp(`[${delimiters}]`, 'g'));
 			// console.log('urlStringToArray', urlStringToArray);
 
 			cleanedUrl = urlStringToArray.filter((val) => {
@@ -93,7 +93,11 @@ export default class UrlManager {
 			let queryParamKey = '';
 			let queryParamVal = '';
 			let newTagsString = '';
-			
+			let newTagsArray = [];
+			let newTag = '';
+			let newcleanedUrl = '';
+			let newcleanedUrlFiltered = '';
+
 			console.log('cleanedUrl', cleanedUrl);
 
 			for (let i = 0; i < cleanedUrl.length; i++) {
@@ -101,48 +105,62 @@ export default class UrlManager {
 				queryParamKey = queryParam[0];
 				queryParamVal = queryParam[1];
 
+				// el par (clave=valor) es de tipo "tags"
 				if (queryParamKey === 'tags') {
 					console.log('filter', filter);
-
+					// este tag Ya está en la url
 					if (queryParamVal === filter) {
 						positionArray.push(i);
 					} else {
-						newQueryParam = `${queryParamKey}=${filter}`;
-						tagsArray.push(newQueryParam);
-						console.log('newQueryParam', newQueryParam);
+						newTag = `${queryParamKey}=${filter}`;
 					}
-				} else if (this.possibleTags.includes(filter)) {
-					newQueryParam = `tags=${filter}`;
-					tagsArray.push(newQueryParam);
 				}
 			}
 
-			console.log('tagsArray', tagsArray);
-
-			if (tagsArray.length > 1) {
-				newTagsString = tagsArray.join('&');
+			if (positionArray.length >= 1) {
+				for (let i = 0; i < positionArray.length; i++) {
+					console.log(cleanedUrl);
+					cleanedUrl.splice(positionArray[i], 1);
+				}
 			} else {
-				newTagsString = tagsArray.toString();
+				if (newTag !== '') {
+					if (!tagsArray.includes(newTag)) {
+						tagsArray.push(newTag);
+					}
+				}
 			}
 
-			if (this.urlString !== '') {
-				newQueryParamString = `${this.urlString}&${newTagsString}`;
+			console.log(cleanedUrl);
+
+			console.log('tagsArray', tagsArray);
+
+			if (tagsArray.length > 0) {
+				if (tagsArray.length > 1) {
+					newTagsString = tagsArray.join('&');
+				} else {
+					newTagsString = tagsArray.toString();
+				}
+			}
+
+
+			if (cleanedUrl.length > 1) {
+				newcleanedUrl = cleanedUrl.join('&');
+			} else {
+				newcleanedUrl = cleanedUrl.toString();
+			}
+
+			console.log('newcleanedUrl', newcleanedUrl);
+
+			if (newTagsString !== '') {
+				newQueryParamString = `?${newcleanedUrl}&${newTagsString}`;
+			} else {
+				newQueryParamString = `?${newcleanedUrl}`;
 			}
 
 			console.log('position', position);
 
-			if (positionArray.length >= 1) {
-				for (let i = 0; i < positionArray.length; i++) {
-					cleanedUrl.splice(positionArray[i], 1);
-				}
-			} else {
-				cleanedUrl.push(newTagsString);
-			}
-
-			console.log('cleanedUrl', cleanedUrl);
-			console.log('this.urlPath', this.urlPath);
 			newUrl = `${this.urlPath}${newQueryParamString}`;
-			console.log('newUrl', newUrl);
+
 			this.history.pushState(stateObj, filter, newUrl);
 		}
 	}
