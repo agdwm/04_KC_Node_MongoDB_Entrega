@@ -6,7 +6,6 @@ export default class UrlManager {
 
 	constructor() {
 		this.url = window.location.href;
-		this.urlString = window.location.search;
 		this.history = window.history;
 		this.urlPath = this.url.replace(this.urlString, '');
 		this.keyModality = 'isSale';
@@ -17,6 +16,7 @@ export default class UrlManager {
 	}
 
 	setUrlModality(modality) {
+		this.urlString = window.location.search;
 		let cleanedUrl = [];
 		let queryParam = '';
 		let queryParamKey = '';
