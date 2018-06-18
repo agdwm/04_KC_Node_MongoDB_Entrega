@@ -40,7 +40,7 @@ export default class SubHeaderManager extends UrlManager {
 	}
 
 	loadAds() {
-		const currentUrl = window.location.href;
+		const currentUrl = this.newUrl;
 
 		this.adsService.getList(
 			currentUrl,
