@@ -87,18 +87,12 @@ export default class UrlManager {
 		if (cleanedUrl.length !== 0) {
 			const tagsArray = [];
 			let queryParam = '';
-			let position;
 			const positionArray = [];
-			let newQueryParam = '';
 			let queryParamKey = '';
 			let queryParamVal = '';
 			let newTagsString = '';
-			let newTagsArray = [];
 			let newTag = '';
 			let newcleanedUrl = '';
-			let newcleanedUrlFiltered = '';
-
-			console.log('cleanedUrl', cleanedUrl);
 
 			for (let i = 0; i < cleanedUrl.length; i++) {
 				queryParam = cleanedUrl[i].split('=');
@@ -114,6 +108,8 @@ export default class UrlManager {
 					} else {
 						newTag = `${queryParamKey}=${filter}`;
 					}
+				} else if (this.possibleTags.includes(filter)) {
+					newTag = `tags=${filter}`;
 				}
 			}
 
@@ -130,10 +126,6 @@ export default class UrlManager {
 				}
 			}
 
-			console.log(cleanedUrl);
-
-			console.log('tagsArray', tagsArray);
-
 			if (tagsArray.length > 0) {
 				if (tagsArray.length > 1) {
 					newTagsString = tagsArray.join('&');
@@ -142,14 +134,11 @@ export default class UrlManager {
 				}
 			}
 
-
 			if (cleanedUrl.length > 1) {
 				newcleanedUrl = cleanedUrl.join('&');
 			} else {
 				newcleanedUrl = cleanedUrl.toString();
 			}
-
-			console.log('newcleanedUrl', newcleanedUrl);
 
 			if (newTagsString !== '') {
 				newQueryParamString = `?${newcleanedUrl}&${newTagsString}`;
@@ -157,10 +146,7 @@ export default class UrlManager {
 				newQueryParamString = `?${newcleanedUrl}`;
 			}
 
-			console.log('position', position);
-
 			newUrl = `${this.urlPath}${newQueryParamString}`;
-
 			this.history.pushState(stateObj, filter, newUrl);
 		}
 	}
