@@ -5,9 +5,7 @@ const $ = require('jquery');
 export default class UrlManager {
 
 	constructor() {
-		this.url = window.location.href;
-		this.history = window.history;
-		this.urlPath = this.url.replace(this.urlString, '');
+		
 		this.keyModality = 'isSale';
 		this.keyFilter = 'tags';
 		this.possibleModalities = ['true', 'false'];
@@ -16,7 +14,10 @@ export default class UrlManager {
 	}
 
 	setUrlModality(modality) {
-		this.urlString = window.location.search;
+		const url = window.location.href;
+		const urlString = window.location.search;
+		const history = window.history;
+		const urlPath = url.replace(urlString, '');
 		let cleanedUrl = [];
 		let queryParam = '';
 		let queryParamKey = '';
@@ -26,9 +27,9 @@ export default class UrlManager {
 		const stateObj = { modality };
 		let newUrl = '';
 
-		if (this.urlString !== '') {
+		if (urlString !== '') {
 			const delimiters = ['?', '&'];
-			const urlStringToArray = this.urlString.split(new RegExp(`[${delimiters}]`, 'g'));
+			const urlStringToArray = urlString.split(new RegExp(`[${delimiters}]`, 'g'));
 
 			cleanedUrl = urlStringToArray.filter((val) => {
 				return val !== '';
@@ -63,14 +64,17 @@ export default class UrlManager {
 			newQueryParamString = newQueryParamArr.toString();
 		}
 
-		newUrl = `${this.urlPath}?${newQueryParamString}`;
-		this.history.pushState(stateObj, modality, newUrl);
+		newUrl = `${urlPath}?${newQueryParamString}`;
+		history.pushState(stateObj, modality, newUrl);
 	}
 
 	setUrlFilter(filter) {
+		const url = window.location.href;
+		const history = window.history;
+		const urlString = window.location.search;
+		const urlPath = url.replace(urlString, '');
 		let cleanedUrl = [];
 		let newQueryParamString = '';
-		const urlString = window.location.search;
 		const stateObj = { filter };
 		let newUrl = '';
 		let newTag = '';
@@ -143,13 +147,12 @@ export default class UrlManager {
 				newQueryParamString = `?${newcleanedUrl}`;
 			}
 
-			newUrl = `${this.urlPath}${newQueryParamString}`;
-			this.history.pushState(stateObj, filter, newUrl);
+			newUrl = `${urlPath}${newQueryParamString}`;
+			history.pushState(stateObj, filter, newUrl);
 		} else {
-			console.log('url vacia');
 			newTag = `${this.keyFilter}=${filter}`;
-			newUrl = `${this.urlPath}?${newTag}`;
-			this.history.pushState(stateObj, filter, newUrl);
+			newUrl = `${urlPath}?${newTag}`;
+			history.pushState(stateObj, filter, newUrl);
 		} 
 	}
 }
