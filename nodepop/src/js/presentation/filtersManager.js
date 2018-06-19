@@ -46,7 +46,7 @@ export default class FiltersManager {
 	}
 
 	loadAds() {
-		const currentUrl = window.location.href;
+		const currentUrl = this.newUrl;
 
 		this.adsService.getList(
 			currentUrl,
