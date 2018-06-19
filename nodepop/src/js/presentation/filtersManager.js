@@ -1,15 +1,17 @@
 'use strict';
 
-import UrlManager from './UrlManager';
+import UrlManager from '../services/UrlService';
 
 const $ = require('jquery');
 
-export default class FiltersManager extends UrlManager {
+export default class FiltersManager {
 
-	constructor(adsService) {
-		super();
+	constructor(adsService, urlService) {
 		this.adsService = adsService;
+		this.urlService = urlService;
 		this.btnFilter = $('.filter-item');
+		this.filterKey = '';
+		this.filterVal = '';
 	}
 
 	init() {
@@ -21,9 +23,12 @@ export default class FiltersManager extends UrlManager {
 			const currentTarget = $(e.currentTarget);
 
 			this.toggleFilter(currentTarget);
+			this.getFilterKey(currentTarget);
 			this.getFilterVal(currentTarget);
-			this.setUrlFilter(this.getFilterVal(currentTarget));
-			this.loadAds();
+			this.urlService.setData(this.filterKey, this.filterVal);
+
+			console.log('DATA', this.urlService.getData());
+			// this.loadAds();
 			return false;
 		});
 	}
@@ -32,9 +37,12 @@ export default class FiltersManager extends UrlManager {
 		btn.toggleClass('active');
 	}
 
+	getFilterKey(btn) {
+		this.filterKey = btn.attr('data-type');
+	}
+
 	getFilterVal(btn) {
-		const dataFilter = btn.attr('data-filter');
-		return dataFilter;
+		this.filterVal = btn.attr('data-value');
 	}
 
 	loadAds() {

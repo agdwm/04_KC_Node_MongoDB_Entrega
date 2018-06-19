@@ -1,16 +1,18 @@
 'use strict';
 
-import UrlManager from './UrlManager';
+import UrlManager from '../services/UrlService';
 
 const $ = require('jquery');
 
-export default class SubHeaderManager extends UrlManager {
+export default class SubHeaderManager {
 
-	constructor(adsService) {
-		super();
+	constructor(adsService, urlService) {
 		this.adsService = adsService;
+		this.urlService = urlService;
 		this.btnMain = $('.main_button');
-		// this.adsContainter = $('#ad-list');
+		this.adsContainter = $('#ad-list');
+		this.modalityKey = '';
+		this.modalityVal = '';
 	}
 
 	init() {
@@ -22,9 +24,12 @@ export default class SubHeaderManager extends UrlManager {
 			const currentTarget = $(e.currentTarget);
 
 			this.switchOption(currentTarget);
+			this.getModalityKey(currentTarget);
 			this.getModalityVal(currentTarget);
-			this.setUrlModality(this.getModalityVal(currentTarget));
-			this.loadAds();
+			this.urlService.setData(this.modalityKey, this.modalityVal);
+
+			console.log('DATA', this.urlService.getData());
+			// this.loadAds();
 			return false;
 		});
 	}
@@ -34,9 +39,12 @@ export default class SubHeaderManager extends UrlManager {
 		btn.addClass('active');
 	}
 
+	getModalityKey(btn) {
+		this.modalityKey = btn.attr('data-type');
+	}
+
 	getModalityVal(btn) {
-		const dataModality = btn.attr('data-modality');
-		return dataModality;
+		this.modalityVal = btn.attr('data-value');
 	}
 
 	loadAds() {

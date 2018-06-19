@@ -3,6 +3,7 @@
 const $ = require('jquery');
 
 export default class HeaderManager {
+	
 	constructor(languageManager) {
 		this.languageManager = languageManager;
 		this.btnIdiom = $('.idiom_button');
