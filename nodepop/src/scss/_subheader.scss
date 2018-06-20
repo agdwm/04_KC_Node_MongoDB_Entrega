@@ -103,7 +103,7 @@
 @media screen and (min-width: $mobile-portrait-width) {
 	.subHeader{
 		grid-template-areas: "main-menu . "
-							"search search";
+							 "search search";
 	}
 }
 
