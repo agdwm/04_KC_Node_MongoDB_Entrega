@@ -16,6 +16,7 @@ const cssnano = require('cssnano');
 const stylelint = require('stylelint');
 // JS
 const browserify = require('browserify');
+const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
 const eslint = require('gulp-eslint');
 // IMG
@@ -29,15 +30,22 @@ const origin = './';
 const source = './src/';
 const dest = './public/';
 const views = './views/';
+const bootstrapPath = './node_modules/bootstrap-sass/assets';
 
-// Bootstrap scss source
-const bootstrapSass = {
-	in: './node_modules/bootstrap-sass/',
+// Bootstrap sources
+const bootstrap = {
+	fonts: bootstrapPath + '/fonts/**/*',
+	js: bootstrapPath + '/javascripts/bootstrap.js ',
+	css: bootstrapPath + '/stylesheets'
+};
+
+const jQueryPath = {
+	in: './node_modules/jquery/dist/jquery.js',
 };
 
 // fonts
 const fonts = { 
-	in: [source + 'fonts/*.*', bootstrapSass.in + 'assets/fonts/**/*'],
+	in: [source + 'fonts/*.*', bootstrap.fonts],
 	out: dest + 'fonts/'
 };
 
@@ -51,21 +59,24 @@ const scss = {
 		outputStyle: 'nested',
 		precison: 3,
 		errLogToConsole: true,
-		includePaths: [bootstrapSass.in + 'assets/stylesheets']
+		includePaths: [bootstrap.css]
 	}
 };
 
 const js = { 
 	in: source + 'js/main.js',
+	concat: dest + 'js/concat.js',
 	out: dest + 'js/',
-	watch: source + 'js/**/*'
+	watch: source + 'js/**/*',
 };
+// js.jsOpts.includePaths[0]
 
 const img = {
 	in: source + 'images/**/*',
 	out: dest + 'images/',
 	watch: source + 'images/**/*'
-}
+};
+
 // copy bootstrap required fonts to dest
 gulp.task('fonts', () => {
 	return gulp
@@ -73,7 +84,7 @@ gulp.task('fonts', () => {
 		.pipe(gulp.dest(fonts.out));
 });
 
-gulp.task('stylelint', function () {
+gulp.task('stylelint', () => {
 	return gulp.src(scss.lint)
 		.pipe(postcss([
 			stylelint()
@@ -97,6 +108,16 @@ gulp.task('sass', ['fonts', 'stylelint'], function () {
 		.pipe(gulp.dest(scss.out))
 		.pipe(browserSync.stream())
 		.pipe(notify({ message: 'SASS Compiled 🤘🏻' }));
+});
+
+gulp.task('concat-js', () => {
+	return gulp.src([ // Eliminar return ??
+		jQueryPath.in,
+		bootstrap.js
+	])
+		.pipe(concat('vendor.js'))
+		.pipe(uglify())
+		.pipe(gulp.dest(js.out));
 });
 
 gulp.task('js', () => {
