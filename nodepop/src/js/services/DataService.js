@@ -2,7 +2,7 @@
 
 const $ = require('jquery');
 
-export default class UrlService {
+export default class DataService {
 
 	constructor() {
 		this.data = {};
@@ -12,6 +12,7 @@ export default class UrlService {
 		return this.data;
 	}
 
+	
 	setData(key, val) {
 		if (key === 'isSale') {
 			this.setDataModality(key, val);
@@ -46,4 +47,5 @@ export default class UrlService {
 			this.data[key] = [val];
 		}
 	}
+
 }
