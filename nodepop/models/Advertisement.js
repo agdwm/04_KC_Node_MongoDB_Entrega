@@ -52,14 +52,20 @@ advertisementSchema.statics.addFilter = (req) => {
 			const range = price.split('-');
 			const pmin = parseFloat(range[0]);
 			const pmax = parseFloat(range[1]);
+			console.log('range', range);
+			console.log('pmin', pmin);
+			console.log('pmax', pmax);
 
-			if (pmin) {
+			if (pmin && pmax) {
+				filter.price = {
+					$gte: pmin,
+					$lte: pmax
+				};
+			} else if (pmin) {
 				filter.price = {
 					$gte: pmin
 				};
-			}
-
-			if (pmax) {
+			} else if (pmax) {
 				filter.price = {
 					$lte: pmax
 				};

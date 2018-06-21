@@ -24,6 +24,8 @@ export default class PriceManager {
 			this.switchOption(currentTarget);
 			this.getPriceKey(currentTarget);
 			this.getPriceVal(currentTarget);
+			this.dataService.setData(this.priceKey, this.priceVal);
+			this.loadAds(this.dataService.getData());
 			return false;
 		});
 	}
@@ -38,6 +40,24 @@ export default class PriceManager {
 	}
 
 	getPriceVal(btn) {
-		this.filterVal = btn.attr('data-value');
+		this.priceVal = btn.attr('data-value');
+	}
+
+	loadAds(data) {
+		this.adsService.getList(
+			data,
+			(ads) => {
+				if (ads) {
+					this.renderAds(ads);
+				}
+			},
+			(req, status, err) => {
+				console.log('something went wrong', status, err );
+			}
+		);
+	}
+
+	renderAds(ads) {
+		this.adsContainter.html(ads);
 	}
 }

@@ -13,10 +13,18 @@ export default class DataService {
 	}
 
 	setData(key, val) {
-		if (key === 'isSale') {
+		switch (key) {
+		case 'isSale':
 			this.setDataModality(key, val);
-		} else if (key === 'tags') {
+			break;
+		case 'tags':
 			this.setFilters(key, val);
+			break;
+		case 'price':
+			this.setPrice(key, val);
+			break;
+		default:
+			console.log(key, val);
 		}
 	}
 
@@ -43,6 +51,22 @@ export default class DataService {
 			}
 		} else {
 			this.data[key] = [val];
+		}
+	}
+
+	setPrice(key, val) {
+		console.log('clave', key);
+		console.log('valor', val);
+		if ($.isEmptyObject(this.data) || this.data[key] !== val) {
+			this.data[key] = val;
+			console.log('key', key);
+			console.log('val', val);
+		} else if (Object.prototype.hasOwnProperty.call(this.data, key)) {
+			if (this.data[key] !== val) {
+				this.data[key] = val;
+				console.log('key', key);
+				console.log('val', val);
+			}			
 		}
 	}
 
