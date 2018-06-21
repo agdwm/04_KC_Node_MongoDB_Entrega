@@ -13,14 +13,14 @@
 	.filter-item{
 		align-content: center;
 		padding: 5px 8px;
-		color: lighten($color-gray-dark, 30%);
+		color: lighten($color-gray-dark, 25%);
 		text-align: center;
 		cursor: pointer;
 		background-color: #FFFFFF;
 		border: 3px solid darken($color-gray-light, 15%);
 		border-radius: 10px;
 		&:hover{
-			color: lighten($color-gray-dark, 20%);
+			color: lighten($color-gray-dark, 15%);
 			border: 3px solid darken($color-gray-light, 25%);
 			transition: all 200ms ease;
 		}
@@ -41,7 +41,7 @@
 	.filters{
 		gap: 15px;
 		.filter-item{
-			padding: 5px 15px;
+			padding: 7px 15px 7px 15px;
 		}
 	}
 }
