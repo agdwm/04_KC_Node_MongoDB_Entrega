@@ -18,14 +18,11 @@
 	&:hover {
 		background-color: darken($color-gray-light, 5%);
 	}
-	&:focus {
-		outline: none !important;
-	}
 }
 
 .btn-price_text {
 	padding: 0 10px 0 5px;
-	font-size: $font-size-base !important;
+	// font-size: $font-size-base !important;
 	text-transform: capitalize;
 }
 
@@ -33,18 +30,41 @@
 	right: 0;
 	padding: 0 0;
 	.price-item {
-
 		a {
 			padding: 8px 0;
 			text-align: center;
-			border-bottom: 1px solid darken($color-gray-light, 2%);
 			&:hover {
 				background-color: $color-green-light;
 			}
 		}
+		&:not(:last-child) {
+			border-bottom: 1px solid darken($color-gray-light, 2%);
+		}
 	}
 }
 
-.btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover, .open>.btn-default.dropdown-toggle.focus, .open>.btn-default.dropdown-toggle:focus, .open>.btn-default.dropdown-toggle:hover {
-	background-color: darken($color-gray-light, 5%);
+// Overwritted Bootstrap Styles
+.btn-default {
+	&.active,
+	&:active {
+		&.focus,
+		&:focus,
+		&:hover {
+			background-color: darken($color-gray-light, 5%);
+			outline: none;
+			// font-size: $font-size-h5;
+		}
+	}
 }
+
+.open > .btn-default{
+	&.dropdown-toggle {
+		&.focus,
+		&:focus,
+		&:hover{
+			background-color: darken($color-gray-light, 5%);
+		}
+	}
+}
+
+

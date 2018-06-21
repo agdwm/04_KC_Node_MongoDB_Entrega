@@ -12,7 +12,6 @@ export default class DataService {
 		return this.data;
 	}
 
-	
 	setData(key, val) {
 		if (key === 'isSale') {
 			this.setDataModality(key, val);
@@ -32,7 +31,6 @@ export default class DataService {
 	}
 
 	setFilters(key, val) {
-
 		if ($.isEmptyObject(this.data)) {
 			this.data[key] = [val];
 		} else if (Object.prototype.hasOwnProperty.call(this.data, key)) {

@@ -14,15 +14,15 @@ $color-pink-intense: #F39892 !default;
 //Font Families
 
 //Font Sizes
-$font-base: 16 !default;
-$font-size-base: 16px !default;
-$font-size-h1: remCalc(36, $font-base) !default; //36
-$font-size-h2: remCalc(28, $font-base) !default; //28
-$font-size-h3: remCalc(24, $font-base) !default; //24
-$font-size-h4: remCalc(20, $font-base) !default; //20
-$font-size-h5: remCalc(18, $font-base) !default; //18
-$font-size-h6: remCalc(16, $font-base) !default; //16
-$font-size-xs: remCalc(11, $font-base) !default; //11
+// $font-base: 16 !default;
+$font-size-base: 16px !default; // body
+$font-size-h1: 3.6rem !default;//36
+$font-size-h2: 2.8rem !default;//28
+$font-size-h3: 2.4rem !default; //24
+$font-size-h4: 2rem !default; //20
+$font-size-h5: 1.8rem !default; //18
+$font-size-h6: 1.6rem !default; //16
+$font-size-xs: 1.1rem !default; //11
 
 //Media Queries
 $mobile-portrait-width: 481px; //iphone6
