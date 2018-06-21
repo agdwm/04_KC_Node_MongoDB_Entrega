@@ -52,9 +52,6 @@ advertisementSchema.statics.addFilter = (req) => {
 			const range = price.split('-');
 			const pmin = parseFloat(range[0]);
 			const pmax = parseFloat(range[1]);
-			console.log('range', range);
-			console.log('pmin', pmin);
-			console.log('pmax', pmax);
 
 			if (pmin && pmax) {
 				filter.price = {

@@ -23,6 +23,9 @@ export default class DataService {
 		case 'price':
 			this.setPrice(key, val);
 			break;
+		case 'title':
+			this.setTitle(key, val);
+			break;
 		default:
 			console.log(key, val);
 		}
@@ -55,19 +58,22 @@ export default class DataService {
 	}
 
 	setPrice(key, val) {
-		console.log('clave', key);
-		console.log('valor', val);
 		if ($.isEmptyObject(this.data) || this.data[key] !== val) {
 			this.data[key] = val;
-			console.log('key', key);
-			console.log('val', val);
 		} else if (Object.prototype.hasOwnProperty.call(this.data, key)) {
 			if (this.data[key] !== val) {
 				this.data[key] = val;
-				console.log('key', key);
-				console.log('val', val);
 			}			
 		}
 	}
 
+	setTitle(key, val) {
+		if ($.isEmptyObject(this.data)) {
+			this.data[key] = [val];
+		} else if (Object.prototype.hasOwnProperty.call(this.data, key)) {
+			if (this.data[key] !== val) {
+				this.data[key] = val;
+			}
+		}
+	}
 }

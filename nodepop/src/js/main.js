@@ -11,6 +11,7 @@ import HeaderManager from './presentation/HeaderManager';
 import SubHeaderManager from './presentation/SubHeaderManager';
 import FiltersManager from './presentation/FiltersManager';
 import PriceManager from './presentation/PriceManager';
+import SearchManager from './presentation/SearchManager';
 
 // Services
 const adsService = new AdsService();
@@ -23,8 +24,11 @@ const headerManager = new HeaderManager(languageManager);
 const subHeaderManager = new SubHeaderManager(adsService, dataService);
 const filtersManager = new FiltersManager(adsService, dataService);
 const priceManager = new PriceManager(adsService, dataService);
+const searchManager = new SearchManager(adsService, dataService);
 
 headerManager.init();
 subHeaderManager.init();
 filtersManager.init();
 priceManager.init();
+searchManager.init();
+
