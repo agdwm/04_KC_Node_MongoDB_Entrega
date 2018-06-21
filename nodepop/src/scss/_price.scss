@@ -22,7 +22,6 @@
 
 .btn-price_text {
 	padding: 0 10px 0 5px;
-	// font-size: $font-size-base !important;
 	text-transform: capitalize;
 }
 
@@ -34,6 +33,15 @@
 			padding: 8px 0;
 			text-align: center;
 			&:hover {
+				background-color: $color-green-light;
+			}
+			&::after {
+				padding-left: 2px;
+				content: "€";
+			}
+		}
+		&.active {
+			a {
 				background-color: $color-green-light;
 			}
 		}
@@ -52,7 +60,6 @@
 		&:hover {
 			background-color: darken($color-gray-light, 5%);
 			outline: none;
-			// font-size: $font-size-h5;
 		}
 	}
 }

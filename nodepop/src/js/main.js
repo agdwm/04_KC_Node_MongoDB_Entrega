@@ -10,6 +10,7 @@ import LanguageManager from './presentation/LanguageManager';
 import HeaderManager from './presentation/HeaderManager';
 import SubHeaderManager from './presentation/SubHeaderManager';
 import FiltersManager from './presentation/FiltersManager';
+import PriceManager from './presentation/PriceManager';
 
 // Services
 const adsService = new AdsService();
@@ -21,7 +22,9 @@ const languageManager = new LanguageManager();
 const headerManager = new HeaderManager(languageManager);
 const subHeaderManager = new SubHeaderManager(adsService, dataService);
 const filtersManager = new FiltersManager(adsService, dataService);
+const priceManager = new PriceManager(adsService, dataService);
 
 headerManager.init();
 subHeaderManager.init();
 filtersManager.init();
+priceManager.init();
