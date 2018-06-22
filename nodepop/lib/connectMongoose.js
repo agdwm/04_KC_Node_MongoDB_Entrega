@@ -1,16 +1,25 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const db = mongoose.connection;
 
-const conn = mongoose.connection;
+mongoose.Promise = global.Promise;
 
-conn.on('error', (err) => {
-	console.log('Error de conexión', err);
+db.on('error', (err) => {
+	console.error('mongodb connection error:', err);
 	process.exit(1);
 });
 
-conn.once('open', () => {
-	console.info('Conectado a MongoDB.');
+db.once('open', () => {
+	console.info('Connected to mongodb on', mongoose.connection.name);
 });
 
-mongoose.connect('mongodb://localhost/cursonode');
+// mongoose.connect('mongodb://localhost/cursonode', {
+// 	useMongoClient: true
+// });
+
+mongoose.connect('mongodb://localhost/nodepop', {
+	// useMongoClient: true,
+});
+
+module.exports = db;

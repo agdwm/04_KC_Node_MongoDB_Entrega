@@ -1,0 +1,63 @@
+{
+	"advertisements": [
+		{
+			"tags" : [ 
+				"mobile"
+			],
+			"title" : "Pruebisima",
+			"isSale" : false,
+			"price" : 125,
+			"photo" : "/images/lifestyle_01-400px.jpg"
+		},
+		{
+			"tags" : [ 
+				"lifestyle", 
+				"mobile"
+			],
+			"title" : "Apple Smart Watch II",
+			"isSale" : true,
+			"price" : 20,
+			"photo" : "/images/lifestyle_02-400px.jpg"
+		},
+		{
+			"tags" : [ 
+				"work", 
+				"mobile"
+			],
+			"title" : "MackBook Pro",
+			"isSale" : false,
+			"price" : 9,
+			"photo" : "/images/lifestyle_03-400px.jpg"
+		},
+		{
+			"tags" : [ 
+				"lifestyle", 
+				"motor"
+			],
+			"title" : "Yamaha R6",
+			"isSale" : true,
+			"price" : 50,
+			"photo" : "/images/lifestyle_04-400px.jpg"
+		},
+		{
+			"tags" : [ 
+				"lifestyle", 
+				"motor"
+			],
+			"title" : "SuzukI",
+			"isSale" : true,
+			"price" : 1200,
+			"photo" : "/images/lifestyle_05-400px.jpg"
+		},
+		{
+			"tags" : [ 
+				"lifestyle", 
+				"motor"
+			],
+			"title" : "SuzukI",
+			"isSale" : true,
+			"price" : 1200,
+			"photo" : "/images/lifestyle_06-400px.jpg"
+		}
+	]
+}

@@ -1,6 +1,8 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const fs = require('fs-extra');
+const flow = require('../lib/flowControl');
 
 const advertisementSchema = mongoose.Schema({
 	title: {
@@ -24,6 +26,35 @@ const advertisementSchema = mongoose.Schema({
 }, {
 	collection: 'advertisements'
 });
+
+/**
+ * carga un json de anuncios
+ */
+advertisementSchema.statics.loadJson = (file, cb) => {
+	// Encodings: https://nodejs.org/api/buffer.html
+	fs.readFile(file, {
+		encoding: 'utf8',
+	}, (err, data) => {
+		if (err) return cb(err);
+		console.log(`${file} read`);
+
+		if (data) {
+			const advertisements = JSON.parse(data).advertisements;
+			const numAnuncios = advertisements.length;
+
+			flow.serialArray(advertisements, Advertisement.createRecord, (err) => {
+				if (err) return cb(err);
+				return cb(null, numAnuncios);
+			});
+		} else {
+			return cb(new Error(__('empty_file', { file: file })));
+		}
+	});
+};
+
+advertisementSchema.statics.createRecord = (nuevo, cb) => {
+	new Advertisement(nuevo).save(cb);
+};
 
 // Add a statics methods to the model
 advertisementSchema.statics.addFilter = (req) => {
