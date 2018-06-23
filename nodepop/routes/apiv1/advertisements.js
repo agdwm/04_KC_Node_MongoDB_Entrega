@@ -12,8 +12,6 @@ router.get('/', (req, res, next) => {
 	const skip = parseInt(req.query.skip, 10) || 0;
 	const limit = parseInt(req.query.limit, 10) || 8;
 	const filter = Advertisement.addFilter(req);
-	console.log('SKIP', skip);
-	console.log('LIMIT', limit);
 
 	Advertisement.list(filter, skip, limit, (err, lista) => {
 		if (err) {

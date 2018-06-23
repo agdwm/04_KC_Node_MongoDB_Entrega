@@ -67,13 +67,17 @@ router.get('/:lang(es|en)?', [
 		}
 		return true;
 	}).withMessage('debe ser uno de los siguientes valores: "lifestyle", "work", "mobile" or "motor" y no puede estar repetido'),
+	query('skip').optional().isNumeric().withMessage('debe ser un valor numérico'),
+	query('limit').optional().isNumeric().withMessage('debe ser un valor numérico'),
 ], (req, res, next) => {
 	validationResult(req).throw();
 
 	const filter = Advertisement.addFilter(req);
+	const skip = parseInt(req.query.skip, 10) || 0;
+	const limit = parseInt(req.query.limit, 10) || 8;
 	// console.log('FILTER', filter);
 
-	Advertisement.list(filter, (err, advertisements) => {
+	Advertisement.list(filter, skip, limit, (err, advertisements) => {
 		if (err) {
 			console.log('Error', err);
 			next(err);
