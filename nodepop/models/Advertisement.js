@@ -105,8 +105,13 @@ advertisementSchema.statics.addFilter = (req) => {
 	return filter;
 };
 
-advertisementSchema.statics.list = (filter, callback) => {
+advertisementSchema.statics.list = (filter, skip, limit, callback) => {
+	console.log('SKIP', skip);
+	console.log('LIMIT', limit);
+
 	const query = Advertisement.find(filter);
+	query.skip(skip);
+	query.limit(limit);
 	query.exec(callback);
 };
 
