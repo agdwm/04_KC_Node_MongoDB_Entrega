@@ -24,7 +24,7 @@
 				"mobile"
 			],
 			"title" : "MacBook Pro 13' Seminuevo",
-			"isSale" : true,
+			"isSale" : false,
 			"price" : 450,
 			"photo" : "/images/work_07-400px.jpg"
 		},
@@ -73,7 +73,7 @@
 				"mobile"
 			],
 			"title" : "Teclado y Ratón Inalámbrico Apple",
-			"isSale" : true,
+			"isSale" : false,
 			"price" : 60,
 			"photo" : "/images/work_04-400px.jpg"
 		},
@@ -92,7 +92,7 @@
 				"motor"
 			],
 			"title" : "Skateboard MID",
-			"isSale" : true,
+			"isSale" : false,
 			"price" : 70,
 			"photo" : "/images/lifestyle_06-400px.jpg"
 		},
@@ -120,7 +120,7 @@
 				"mobile"
 			],
 			"title" : "Iphone 5 Reacondicionado Blanco",
-			"isSale" : true,
+			"isSale" : false,
 			"price" : 50,
 			"photo" : "/images/mobile_01-400px.jpg"
 		},
