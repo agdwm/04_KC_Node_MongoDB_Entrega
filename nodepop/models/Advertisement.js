@@ -105,14 +105,27 @@ advertisementSchema.statics.addFilter = (req) => {
 	return filter;
 };
 
-advertisementSchema.statics.list = (filter, skip, limit, callback) => {
-	console.log('SKIP', skip);
-	console.log('LIMIT', limit);
+advertisementSchema.statics.list = async (filters, startRow, numRows, sortField, includeTotal, callback) => {
 
-	const query = Advertisement.find(filter);
-	query.skip(skip);
-	query.limit(limit);
-	query.exec(callback);
+	const query = Advertisement.find(filters);
+	query.skip(startRow);
+	query.limit(numRows);
+	query.sort(sortField);
+
+	const result = {};
+
+	if (includeTotal) {
+		result.total = await Advertisement.find(filters).count();
+	}
+
+	result.advertisements = await query.exec();
+
+
+	if (callback) {
+		return callback(null, result);
+	}
+
+	return result; 
 };
 
 const Advertisement = mongoose.model('Advertisement', advertisementSchema);

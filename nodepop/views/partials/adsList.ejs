@@ -6,6 +6,7 @@
 			<% } else { %>
 				<a href="" class="ad buy">
 			<% } %>
+
 					<figure class="ad-image">
 						<img src="<%= advertisement.photo %>" alt="">
 						<figcaption>
@@ -36,3 +37,6 @@
 		<% }) %>
 	<% } %>
 
+	<% if (total || total === 0) { %>
+		<span id="request-info" data-total="<%= total %>"><%= total %></span>
+	<% } %>

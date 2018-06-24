@@ -69,32 +69,35 @@ router.get('/:lang(es|en)?', [
 	}).withMessage('debe ser uno de los siguientes valores: "lifestyle", "work", "mobile" or "motor" y no puede estar repetido'),
 	query('skip').optional().isNumeric().withMessage('debe ser un valor numérico'),
 	query('limit').optional().isNumeric().withMessage('debe ser un valor numérico'),
-], (req, res, next) => {
-	validationResult(req).throw();
+], async (req, res, next) => {
+	try {
+		validationResult(req).throw();
 
-	const filter = Advertisement.addFilter(req);
-	const skip = parseInt(req.query.skip, 10) || 0;
-	const limit = parseInt(req.query.limit, 10) || 8;
-	// console.log('FILTER', filter);
+		const filters = Advertisement.addFilter(req);
 
-	Advertisement.list(filter, skip, limit, (err, advertisements) => {
-		if (err) {
-			console.log('Error', err);
-			next(err);
-			return;
-		}
+		const start = parseInt(req.query.start, 10) || 0; // page
+		const limit = parseInt(req.query.limit, 10) || 100; // perPage
+		const sort = req.query.sort || '_id';
+		const includeTotal = true;
+
+		const { total, advertisements } = await Advertisement.list(filters, start, limit, sort, includeTotal);
+		console.log('TOTAL', total);
+
 		// If it is an Ajax request
 		if (req.xhr) {
 			res.render('partials/adsList', {
+				total: total,
 				advertisements: advertisements
 			});
 			return;
 		}
+
 		res.render('index', {
 			title: 'Nodepop .',
+			total: total,
 			advertisements: advertisements
 		});
-	});
+	} catch (err) { next(err) }
 });
 
 module.exports = router;
