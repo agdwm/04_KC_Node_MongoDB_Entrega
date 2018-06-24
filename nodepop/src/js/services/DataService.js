@@ -3,7 +3,6 @@
 const $ = require('jquery');
 
 export default class DataService {
-
 	constructor() {
 		this.data = {};
 	}
@@ -26,6 +25,9 @@ export default class DataService {
 		case 'title':
 			this.setTitle(key, val);
 			break;
+		case 'paginationInfo':
+			this.setPagination(key, val);
+			break;		
 		default:
 			console.log(key, val);
 		}
@@ -68,11 +70,29 @@ export default class DataService {
 	}
 
 	setTitle(key, val) {
-		if ($.isEmptyObject(this.data)) {
+		if ($.isEmptyObject(this.data) || this.data[key] !== val) {
 			this.data[key] = [val];
 		} else if (Object.prototype.hasOwnProperty.call(this.data, key)) {
 			if (this.data[key] !== val) {
 				this.data[key] = val;
+			}
+		}
+	}
+
+	setPagination(key, val) {
+
+		const { skip, limit } = val;
+
+		if ($.isEmptyObject(this.data) || this.data[key] !== val) {
+			this.data.skip = [skip];
+			this.data.limit = [limit];
+		} else if (Object.prototype.hasOwnProperty.call(this.data, 'skip')) {
+			if (this.data.skip !== skip) {
+				this.data.skip = skip;
+			}
+		} else if (Object.prototype.hasOwnProperty.call(this.data, 'limit')) {
+			if (this.data.limit !== limit) {
+				this.data.limit = limit;
 			}
 		}
 	}

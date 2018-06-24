@@ -76,12 +76,11 @@ router.get('/:lang(es|en)?', [
 		const filters = Advertisement.addFilter(req);
 
 		const start = parseInt(req.query.start, 10) || 0; // page
-		const limit = parseInt(req.query.limit, 10) || 100; // perPage
+		const limit = parseInt(req.query.limit, 10) || 8; // perPage
 		const sort = req.query.sort || '_id';
 		const includeTotal = true;
 
 		const { total, advertisements } = await Advertisement.list(filters, start, limit, sort, includeTotal);
-		console.log('TOTAL', total);
 
 		// If it is an Ajax request
 		if (req.xhr) {
