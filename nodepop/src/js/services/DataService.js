@@ -27,7 +27,7 @@ export default class DataService {
 			break;
 		case 'paginationInfo':
 			this.setPagination(key, val);
-			break;		
+			break;
 		default:
 			console.log(key, val);
 		}
@@ -65,7 +65,7 @@ export default class DataService {
 		} else if (Object.prototype.hasOwnProperty.call(this.data, key)) {
 			if (this.data[key] !== val) {
 				this.data[key] = val;
-			}			
+			}
 		}
 	}
 
@@ -80,12 +80,19 @@ export default class DataService {
 	}
 
 	setPagination(key, val) {
-
 		const { skip, limit } = val;
 
+		// if (skip === undefined) {
+		// 	skip = 1;
+		// }
+		// if (limit === undefined) {
+		// 	limit = 8;
+		// }
+
+
 		if ($.isEmptyObject(this.data) || this.data[key] !== val) {
-			this.data.skip = [skip];
-			this.data.limit = [limit];
+			this.data.skip = skip;
+			this.data.limit = limit;
 		} else if (Object.prototype.hasOwnProperty.call(this.data, 'skip')) {
 			if (this.data.skip !== skip) {
 				this.data.skip = skip;

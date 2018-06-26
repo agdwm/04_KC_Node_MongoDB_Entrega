@@ -75,17 +75,18 @@ router.get('/:lang(es|en)?', [
 
 		const filters = Advertisement.addFilter(req);
 
-		const start = parseInt(req.query.start, 10) || 0; // page
+		const skip = parseInt(req.query.skip, 10) || 0; // page
 		const limit = parseInt(req.query.limit, 10) || 8; // perPage
 		const sort = req.query.sort || '_id';
 		const includeTotal = true;
 
-		const { total, advertisements } = await Advertisement.list(filters, start, limit, sort, includeTotal);
+		const { total, advertisements } = await Advertisement.list(filters, skip, limit, sort, includeTotal);
 
 		// If it is an Ajax request
 		if (req.xhr) {
 			res.render('partials/adsList', {
 				total: total,
+				limit: limit,
 				advertisements: advertisements
 			});
 			return;

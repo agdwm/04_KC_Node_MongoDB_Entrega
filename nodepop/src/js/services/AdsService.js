@@ -3,11 +3,11 @@
 const $ = require('jquery');
 
 export default class AdsService {
-
 	constructor() {
 		this.url = window.location.href;
 	}
 	getList(data, successCallback, errorCallback) {
+
 		const queryString = $.param(data);
 
 		$.ajax({

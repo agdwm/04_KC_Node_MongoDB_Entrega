@@ -1,6 +1,3 @@
-window.$ = window.jQuery = require('jquery');
-const $ = require('jquery');
-
 // SERVICES
 import AdsService from './services/AdsService';
 import DataService from './services/DataService';
@@ -15,9 +12,13 @@ import FiltersManager from './presentation/FiltersManager';
 import PriceManager from './presentation/PriceManager';
 import SearchManager from './presentation/SearchManager';
 
+const $ = require('jquery');
+window.$ = window.jQuery = require('jquery');
+
 // Services
 const adsService = new AdsService();
 const dataService = new DataService();
+
 const paginateService = new PaginateService();
 const languageManager = new LanguageManager();
 
@@ -29,12 +30,12 @@ const priceManager = new PriceManager(adsService, dataService);
 const searchManager = new SearchManager(adsService, dataService);
 const paginationManager = new PaginationManager(adsService, dataService);
 
-$(document).ready(() => {
-	// on load
-	headerManager.init();
-	subHeaderManager.init();
-	filtersManager.init();
-	priceManager.init();
-	searchManager.init();
-	paginationManager.init();
-});
+
+// on load
+headerManager.init();
+subHeaderManager.init();
+filtersManager.init();
+priceManager.init();
+searchManager.init();
+paginationManager.init();
+
