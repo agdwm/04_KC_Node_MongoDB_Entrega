@@ -28,14 +28,15 @@ const subHeaderManager = new SubHeaderManager(adsService, dataService);
 const filtersManager = new FiltersManager(adsService, dataService);
 const priceManager = new PriceManager(adsService, dataService);
 const searchManager = new SearchManager(adsService, dataService);
-const paginationManager = new PaginationManager(adsService, dataService);
+const paginationManager = new PaginationManager(adsService, dataService, paginateService);
 
 
 // on load
-headerManager.init();
-subHeaderManager.init();
-filtersManager.init();
-priceManager.init();
-searchManager.init();
-paginationManager.init();
-
+$(document).ready(() => {
+	headerManager.init();
+	subHeaderManager.init();
+	filtersManager.init();
+	priceManager.init();
+	searchManager.init();
+	paginationManager.init();
+});
