@@ -1,9 +1,14 @@
+html, body {
+	height: 100%;
+}
+
 html {
 	font-size: 62.5%;
 }
 
 body{
 	font-family: Lato, Arial, Helvetica, sans-serif;
+
 	display: grid;
 	grid-template-areas: "header"
 						 "subHeader"
