@@ -1,5 +1,6 @@
 html, body {
 	height: 100%;
+	overflow: auto;
 }
 
 html {
@@ -8,7 +9,6 @@ html {
 
 body{
 	font-family: Lato, Arial, Helvetica, sans-serif;
-
 	display: grid;
 	grid-template-areas: "header"
 						 "subHeader"
