@@ -25,7 +25,7 @@ export default class DataService {
 		case 'title':
 			this.setTitle(key, val);
 			break;
-		case 'paginationInfo':
+		case 'paginationTotal':
 			this.setPagination(key, val);
 			break;
 		default:

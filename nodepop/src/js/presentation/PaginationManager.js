@@ -25,27 +25,19 @@ export default class PaginationManager {
 
 	init() {
 		this.setupLoadEventHandler();
-		this.setupClickEventHandler();
 	}
 
 	setupLoadEventHandler() {
 		$(document).ready(() => {
 			if (this.dataSource.length < 1) {
-				this.generateDataSource();
+				this.setDataSource();
 			}
-			// this.generateCurrentSkip();
 			this.paginate(this.dataSource);
 		});
 	}
 
-	setupClickEventHandler() {
-		$('#pagination').on('click', '.paginationjs-pages li', (e) => {	
-			e.preventDefault();
-		});
-	}
-
 	// ARRAY Total de elementos -> dataSource
-	generateDataSource() { // OK
+	setDataSource() { // OK
 		const result = [];
 
 		for (let i = 1; i <= this.totalAds; i++) {
@@ -54,23 +46,24 @@ export default class PaginationManager {
 		this.dataSource = result;
 	}
 
+	getDataSource() {
+		return this.dataSource;
+	}
 	// Valor con que comienza cada array de 8 anuncios
 	generateCurrentSkip() {
 		const currentSkip = ((this.currentBtn * this.limit) - this.limit) + 1;
 		this.skip = currentSkip;
-		console.log('page', this.currentBtn);
-		console.log('maxItems', this.limit);
-		console.log('currentSkip', currentSkip);
 	}
 
-	// Total de anuncios que nos traemos en cada petición una vez filtrada.
+	// Total de anuncios que nos traemos en cada petición una vez filtrada
 	getLimit() {
 		return this.limit;
 	}
 
-	getTotalAds() {
-		return this.totalAds;
-	}
+	// getTotalAds() {
+	// 	return this.totalAds;
+	// }
+
 
 	// preparamos el objeto con paginationTotalVal con los atributos {'skip' y 'limit'}
 	// y sus valores correspodientes, para pasárselo posteriormente al dataService que preparará
@@ -94,16 +87,15 @@ export default class PaginationManager {
 		);
 	}
 
-	paginate(dataSource) {
+	paginate() {
 		this.pagContainer.pagination({
-			dataSource: this.dataSource, // total ads from filtered request
-			pageSize: this.limit, // num max ads per page
+			dataSource: this.getDataSource(), // total ads from filtered request
+			pageSize: this.getLimit(), // num max ads per page
 			showGoInput: true,
 			showGoButton: true,
 			showBeginingOnOmit: false,
 			showEndingOnOmit: false,
 			pageRange: 1,
-			// totalPage: 2,
 			prevText: '<i class="glyphicon glyphicon-chevron-left"></i>',
 			nextText: '<i class="glyphicon glyphicon-chevron-right"></i>',
 			callback: (data, pagination) => {

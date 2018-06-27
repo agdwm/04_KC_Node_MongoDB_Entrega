@@ -1,4 +1,3 @@
-
 	<% if (advertisements) { %>
 		<% advertisements.forEach((advertisement) => { %>
 			<% if (advertisement.isSale === true) { %>
@@ -37,11 +36,11 @@
 		<% }) %>
 	<% } %>
 
-	<% if (total || total === 0) { %>
-		<span id="pagination-total" data-type="paginationTotal" data-total="<%= total %>">Anuncios totales <%= total %></span>
-	<% } %>
-
 	<% if (limit) { %>
 		<span id="pagination-limit" data-type="paginationLimit" data-limit="<%= limit %>">Límite <%= limit %></span>
+	<% } %>
+
+	<% if (total || total === 0) { %>
+		<div id="pagination-total" data-type="paginationTotal" data-total="<%= total %>">Anuncios encontrados: <%= total %></div>
 	<% } %>
 	
