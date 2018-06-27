@@ -85,8 +85,8 @@ router.get('/:lang(es|en)?', [
 		// If it is an Ajax request
 		if (req.xhr) {
 			res.render('partials/adsList', {
-				total: total,
 				limit: limit,
+				total: total,
 				advertisements: advertisements
 			});
 			return;
@@ -94,6 +94,7 @@ router.get('/:lang(es|en)?', [
 
 		res.render('index', {
 			title: 'Nodepop .',
+			limit: limit,
 			total: total,
 			advertisements: advertisements
 		});
