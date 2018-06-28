@@ -11,6 +11,9 @@ export default class PaginationManager {
 		this.dataSource = [];
 		this.pagContainer = $('#pagination');
 		this.adsContainter = $('#ad-list');
+
+		this.paginationTotalKey = $.trim($('#pagination-total').attr('data-type'));
+		this.paginationTotalVal = {};
 	}
 
 	init() {
@@ -24,6 +27,12 @@ export default class PaginationManager {
 			this.paginateService.setDataSource();
 		}
 		this.paginateService.initPaginate(self, this.pagContainer);
+	}
+
+	generateData(skip, limit) {
+		this.paginationTotalVal.skip = skip.toString();
+		this.paginationTotalVal.limit = limit.toString();
+		this.dataService.setData(this.paginationTotalKey, this.paginationTotalVal);
 	}
 
 	loadAds(data) {
