@@ -11,6 +11,16 @@ export default class DataService {
 		return this.data;
 	}
 
+	// args: {skip: '0', limit: '8'}
+	createData(args) {
+		this.data = args;
+		$.each(args, (key, value) => {
+			if (value !== undefined) {
+				this.setData(key, value);
+			}
+		});
+	}
+
 	setData(key, val) {
 		switch (key) {
 		case 'isSale':
@@ -25,8 +35,11 @@ export default class DataService {
 		case 'title':
 			this.setTitle(key, val);
 			break;
-		case 'paginationTotal':
-			this.setPagination(key, val);
+		case 'skip':
+			this.setSkip(key, val);
+			break;
+		case 'limit':
+			this.setLimit(key, val);
 			break;
 		default:
 			console.log(key, val);
@@ -79,28 +92,26 @@ export default class DataService {
 		}
 	}
 
-	setPagination(key, val) {
-		const { skip, limit } = val;
-
-		// if (skip === undefined) {
-		// 	skip = 1;
-		// }
-		// if (limit === undefined) {
-		// 	limit = 8;
-		// }
-
-
+	setSkip(key, val) {
+		const valToString = val.toString();
 		if ($.isEmptyObject(this.data) || this.data[key] !== val) {
-			this.data.skip = skip;
-			this.data.limit = limit;
-		} else if (Object.prototype.hasOwnProperty.call(this.data, 'skip')) {
-			if (this.data.skip !== skip) {
-				this.data.skip = skip;
-			}
-		} else if (Object.prototype.hasOwnProperty.call(this.data, 'limit')) {
-			if (this.data.limit !== limit) {
-				this.data.limit = limit;
+			this.data[key] = valToString;
+		} else if (Object.prototype.hasOwnProperty.call(this.data, key)) {
+			if (this.data[key] !== valToString) {
+				this.data[key] = valToString;
 			}
 		}
 	}
+
+	setLimit(key, val) {
+		const valToString = val.toString();
+		if ($.isEmptyObject(this.data) || this.data[key] !== valToString) {
+			this.data[key] = valToString;
+		} else if (Object.prototype.hasOwnProperty.call(this.data, key)) {
+			if (this.data[key] !== valToString) {
+				this.data[key] = valToString;
+			}
+		}
+	}
+
 }

@@ -11,9 +11,7 @@ export default class PaginationManager {
 		this.dataSource = [];
 		this.pagContainer = $('#pagination');
 		this.adsContainter = $('#ad-list');
-
-		this.paginationTotalKey = $.trim($('#pagination-total').attr('data-type'));
-		this.paginationTotalVal = {};
+		this.totalAds = parseInt($.trim($('#pagination-total').attr('data-total')), 10); // total de anuncios q recibimo en cada petición
 	}
 
 	init() {
@@ -24,15 +22,10 @@ export default class PaginationManager {
 		const self = this;
 
 		if (this.dataSource.length < 1) {
+			this.paginateService.setTotalAds();
 			this.paginateService.setDataSource();
 		}
 		this.paginateService.initPaginate(self, this.pagContainer);
-	}
-
-	generateData(skip, limit) {
-		this.paginationTotalVal.skip = skip.toString();
-		this.paginationTotalVal.limit = limit.toString();
-		this.dataService.setData(this.paginationTotalKey, this.paginationTotalVal);
 	}
 
 	loadAds(data) {
