@@ -4,13 +4,16 @@ const $ = require('jquery');
 
 export default class FiltersManager {
 
-	constructor(adsService, dataService) {
+	constructor(adsService, dataService, paginateService) {
 		this.adsService = adsService;
 		this.dataService = dataService;
+		this.paginateService = paginateService;
+
 		this.btnFilter = $('.filter-item');
 		this.adsContainter = $('#ad-list');
 		this.filterKey = '';
 		this.filterVal = '';
+		this.initSkip = 1;
 	}
 
 	init() {
@@ -24,8 +27,10 @@ export default class FiltersManager {
 			this.toggleFilter(currentTarget);
 			this.getFilterKey(currentTarget);
 			this.getFilterVal(currentTarget);
-			this.dataService.setData(this.filterKey, this.filterVal);
-			this.loadAds(this.dataService.getData());
+
+			this.dataService.createData({ tags: this.filterVal, skip: this.initSkip, limit: 8 });
+			this.loadAdsMain(this.dataService.getData());
+
 			return false;
 		});
 	}
@@ -42,7 +47,25 @@ export default class FiltersManager {
 		this.filterVal = btn.attr('data-value');
 	}
 
-	loadAds(data) {
+	loadAdsMain(data) {
+		const self = this;
+		this.adsService.getList(
+			data,
+			(ads) => {
+				if (ads) {
+					this.renderAds(ads);
+					this.paginateService.setTotalAds();
+					this.paginateService.setDataSource();
+					self.paginateService.renderPaginate(self, $('#pagination'), this.initSkip);
+				}
+			},
+			(req, status, err) => {
+				console.log('something went wrong', status, err);
+			}
+		);
+	}
+
+	loadAdsPag(data) {
 		this.adsService.getList(
 			data,
 			(ads) => {
@@ -51,7 +74,7 @@ export default class FiltersManager {
 				}
 			},
 			(req, status, err) => {
-				console.log('something went wrong', status, err );
+				console.log('something went wrong', status, err);
 			}
 		);
 	}
