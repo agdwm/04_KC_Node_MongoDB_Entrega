@@ -14,7 +14,7 @@ export default class PriceManager {
 		this.priceKey = '';
 		this.priceVal = '';
 
-		this.initSkip = 1;
+		this.initSkip = 0;
 	}
 
 	init() {

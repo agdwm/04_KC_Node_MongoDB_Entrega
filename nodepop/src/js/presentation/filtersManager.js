@@ -13,7 +13,7 @@ export default class FiltersManager {
 		this.adsContainter = $('#ad-list');
 		this.filterKey = '';
 		this.filterVal = '';
-		this.initSkip = 1;
+		this.initSkip = 0;
 	}
 
 	init() {

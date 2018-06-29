@@ -14,7 +14,7 @@ export default class SubHeaderManager {
 		this.modalityKey = '';
 		this.modalityVal = '';
 
-		this.initSkip = 1;
+		this.initSkip = 0;
 		this.currentBtn = 1;
 		this.object = [];
 	}

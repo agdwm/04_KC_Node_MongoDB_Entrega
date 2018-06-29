@@ -84,12 +84,13 @@ export default class DataService {
 
 	setTitle(key, val) {
 		if ($.isEmptyObject(this.data) || this.data[key] !== val) {
-			this.data[key] = [val];
+			this.data[key] = val;
 		} else if (Object.prototype.hasOwnProperty.call(this.data, key)) {
 			if (this.data[key] !== val) {
 				this.data[key] = val;
 			}
 		}
+		console.log('DATA_TITLE', this.data);
 	}
 
 	setSkip(key, val) {

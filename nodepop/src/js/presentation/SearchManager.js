@@ -14,7 +14,7 @@ export default class SearchManager {
 		this.searchKey = '';
 		this.searchVal = '';
 
-		this.initSkip = 1;
+		this.initSkip = 0;
 	}
 
 	init() {
