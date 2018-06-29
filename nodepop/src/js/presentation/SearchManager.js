@@ -4,13 +4,17 @@ const $ = require('jquery');
 
 export default class SearchManager {
 
-	constructor(adsService, dataService) {
+	constructor(adsService, dataService, paginateService) {
 		this.adsService = adsService;
 		this.dataService = dataService;
+		this.paginateService = paginateService;
+
 		this.inputSearch = $('#input-search');
 		this.adsContainter = $('#ad-list');
 		this.searchKey = '';
 		this.searchVal = '';
+
+		this.initSkip = 1;
 	}
 
 	init() {
@@ -23,8 +27,10 @@ export default class SearchManager {
 
 			this.getSearchKey(currentTarget);
 			this.getSearchVal(currentTarget);
-			this.dataService.setData(this.searchKey, this.searchVal);
-			this.loadAds(this.dataService.getData());
+
+			this.dataService.createData({ title: this.searchVal, skip: this.initSkip, limit: 8 });
+			this.loadAdsMain(this.dataService.getData());
+
 			return false;
 		});
 	}
@@ -37,7 +43,25 @@ export default class SearchManager {
 		this.searchVal = input.val();
 	}
 
-	loadAds(data) {
+	loadAdsMain(data) {
+		const self = this;
+		this.adsService.getList(
+			data,
+			(ads) => {
+				if (ads) {
+					this.renderAds(ads);
+					this.paginateService.setTotalAds();
+					this.paginateService.setDataSource();
+					self.paginateService.renderPaginate(self, $('#pagination'), this.initSkip);
+				}
+			},
+			(req, status, err) => {
+				console.log('something went wrong', status, err);
+			}
+		);
+	}
+
+	loadAdsPag(data) {
 		this.adsService.getList(
 			data,
 			(ads) => {
