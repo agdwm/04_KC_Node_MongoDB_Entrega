@@ -11,14 +11,13 @@ export default class DataService {
 		return this.data;
 	}
 
-	// args: {skip: '0', limit: '8'}
 	createData(args) {
-		this.data = args;
+		this.data = $.extend({}, this.data, args);
+
 		$.each(args, (key, value) => {
-			if (value !== undefined) {
-				this.setData(key, value);
-			}
+			this.setData(key, value);
 		});
+		console.log('DATA', this.data);
 	}
 
 	setData(key, val) {

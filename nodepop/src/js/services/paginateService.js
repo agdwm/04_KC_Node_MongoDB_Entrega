@@ -87,8 +87,8 @@ export default class PaginateService {
 				const currentBtn = pagination.pageNumber;
 				this.generateCurrentSkip(currentBtn);
 				console.log('this.skip2', this.skip);
-				this.generateTotalVal();
-				self.generateData(this.paginationTotalKey, this.paginationTotalVal);
+
+				self.dataService.createData({ skip: this.skip, limit: this.limit });
 				self.loadAdsPag(self.dataService.getData());
 				// self.generateData(this.skip, this.limit);
 				// self.loadAds(self.dataService.getData());

@@ -4,13 +4,19 @@ const $ = require('jquery');
 
 export default class SubHeaderManager {
 
-	constructor(adsService, dataService) {
+	constructor(adsService, dataService, paginateService) {
 		this.adsService = adsService;
 		this.dataService = dataService;
+		this.paginateService = paginateService;
+
 		this.btnMain = $('.main_button');
 		this.adsContainter = $('#ad-list');
 		this.modalityKey = '';
 		this.modalityVal = '';
+
+		this.initSkip = 1;
+		this.currentBtn = 1;
+		this.object = [];
 	}
 
 	init() {
@@ -24,10 +30,20 @@ export default class SubHeaderManager {
 			this.switchOption(currentTarget);
 			this.getModalityKey(currentTarget);
 			this.getModalityVal(currentTarget);
-			this.dataService.setData(this.modalityKey, this.modalityVal);
-			this.loadAds(this.dataService.getData());
+
+			this.dataService.createData({ isSale: this.modalityVal, skip: this.initSkip, limit: 8 });
+			this.loadAdsMain(this.dataService.getData());
+
 			return false;
 		});
+	}
+
+
+
+	getCurrentBtn(btn) {
+		const currentBtn = $.trim(btn.attr('data-num'));
+		this.currentBtn = currentBtn;
+		console.log('PAGE NUMBER', currentBtn);
 	}
 
 	switchOption(btn) {
@@ -43,7 +59,30 @@ export default class SubHeaderManager {
 		this.modalityVal = btn.attr('data-value');
 	}
 
-	loadAds(data) {
+	generateData(paginationTotalKey, paginationTotalVal) {
+		this.dataService.setData(paginationTotalKey, paginationTotalVal);
+	}
+
+	loadAdsMain(data) {
+		const self = this;
+		this.adsService.getList(
+			data,
+			(ads) => {
+				if (ads) {
+					this.renderAds(ads);
+					this.paginateService.setTotalAds();
+					this.paginateService.setDataSource();
+					self.paginateService.renderPaginate(self, $('#pagination'), this.initSkip);
+				}
+			},
+			(req, status, err) => {
+				console.log('something went wrong', status, err);
+			}
+		);
+	}
+
+	loadAdsPag(data) {
+		const self = this;
 		this.adsService.getList(
 			data,
 			(ads) => {
@@ -52,7 +91,7 @@ export default class SubHeaderManager {
 				}
 			},
 			(req, status, err) => {
-				console.log('something went wrong', status, err );
+				console.log('something went wrong', status, err);
 			}
 		);
 	}
