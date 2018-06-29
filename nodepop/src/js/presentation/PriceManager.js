@@ -4,13 +4,17 @@ const $ = require('jquery');
 
 export default class PriceManager {
 
-	constructor(adsService, dataService) {
+	constructor(adsService, dataService, paginateService) {
 		this.adsService = adsService;
 		this.dataService = dataService;
+		this.paginateService = paginateService;
+
 		this.btnPrice = $('.price-item');
 		this.adsContainter = $('#ad-list');
 		this.priceKey = '';
 		this.priceVal = '';
+
+		this.initSkip = 1;
 	}
 
 	init() {
@@ -24,8 +28,10 @@ export default class PriceManager {
 			this.switchOption(currentTarget);
 			this.getPriceKey(currentTarget);
 			this.getPriceVal(currentTarget);
-			this.dataService.setData(this.priceKey, this.priceVal);
-			this.loadAds(this.dataService.getData());
+
+			this.dataService.createData({ price: this.priceVal, skip: this.initSkip, limit: 8  });
+			this.loadAdsMain(this.dataService.getData());
+
 			return false;
 		});
 	}
@@ -43,7 +49,25 @@ export default class PriceManager {
 		this.priceVal = btn.attr('data-value');
 	}
 
-	loadAds(data) {
+	loadAdsMain(data) {
+		const self = this;
+		this.adsService.getList(
+			data,
+			(ads) => {
+				if (ads) {
+					this.renderAds(ads);
+					this.paginateService.setTotalAds();
+					this.paginateService.setDataSource();
+					self.paginateService.renderPaginate(self, $('#pagination'), this.initSkip);
+				}
+			},
+			(req, status, err) => {
+				console.log('something went wrong', status, err);
+			}
+		);
+	}
+
+	loadAdsPag(data) {
 		this.adsService.getList(
 			data,
 			(ads) => {
@@ -52,7 +76,7 @@ export default class PriceManager {
 				}
 			},
 			(req, status, err) => {
-				console.log('something went wrong', status, err );
+				console.log('something went wrong', status, err);
 			}
 		);
 	}

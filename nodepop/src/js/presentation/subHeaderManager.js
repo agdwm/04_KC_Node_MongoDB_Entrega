@@ -38,8 +38,6 @@ export default class SubHeaderManager {
 		});
 	}
 
-
-
 	getCurrentBtn(btn) {
 		const currentBtn = $.trim(btn.attr('data-num'));
 		this.currentBtn = currentBtn;
@@ -82,7 +80,6 @@ export default class SubHeaderManager {
 	}
 
 	loadAdsPag(data) {
-		const self = this;
 		this.adsService.getList(
 			data,
 			(ads) => {

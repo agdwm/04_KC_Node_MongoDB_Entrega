@@ -35,9 +35,11 @@
 			&:hover {
 				background-color: $color-green-light;
 			}
-			&::after {
-				padding-left: 2px;
-				content: "€";
+			&:not(:first-child) {
+				&::after {
+					padding-left: 2px;
+					content: "€";
+				}
 			}
 		}
 		&.active {
