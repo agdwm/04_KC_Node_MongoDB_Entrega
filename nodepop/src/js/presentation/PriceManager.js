@@ -10,7 +10,7 @@ export default class PriceManager {
 		this.paginateService = paginateService;
 
 		this.btnPrice = $('.price-item');
-		this.adsContainter = $('#ad-list');
+		this.adsContainter = $('#ad-list-wrapper');
 		this.priceKey = '';
 		this.priceVal = '';
 

@@ -10,7 +10,7 @@ export default class SearchManager {
 		this.paginateService = paginateService;
 
 		this.inputSearch = $('#input-search');
-		this.adsContainter = $('#ad-list');
+		this.adsContainter = $('#ad-list-wrapper');
 		this.searchKey = '';
 		this.searchVal = '';
 

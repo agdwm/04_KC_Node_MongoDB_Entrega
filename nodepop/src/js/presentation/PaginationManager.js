@@ -10,7 +10,7 @@ export default class PaginationManager {
 
 		this.dataSource = [];
 		this.pagContainer = $('#pagination');
-		this.adsContainter = $('#ad-list');
+		this.adsContainter = $('#ad-list-wrapper');
 		this.totalAds = parseInt($.trim($('#pagination-total').attr('data-total')), 10); // total de anuncios q recibimo en cada petición
 	}
 

@@ -1,11 +1,11 @@
 	<% if (advertisements) { %>
+		<section class="ad-list" id="ad-list">
 		<% advertisements.forEach((advertisement) => { %>
 			<% if (advertisement.isSale === true) { %>
 				<a href="" class="ad sell">
 			<% } else { %>
 				<a href="" class="ad buy">
 			<% } %>
-
 					<figure class="ad-image">
 						<img src="<%= advertisement.photo %>" alt="">
 						<figcaption>
@@ -34,13 +34,16 @@
 					</figure>
 				</a>
 		<% }) %>
+	</section>
 	<% } %>
+	
 
 	<% if (limit) { %>
-		<span id="pagination-limit" data-type="paginationLimit" data-limit="<%= limit %>">Límite <%= limit %></span>
+		<span hidden id="pagination-limit" data-type="paginationLimit" data-limit="<%= limit %>"></span>
 	<% } %>
 
-	<% if (total || total === 0) { %>
-		<div id="pagination-total" data-type="paginationTotal" data-total="<%= total %>">Anuncios encontrados: <%= total %></div>
+	<% if (total) { %>
+		<div hidden id="pagination-total" data-type="paginationTotal" data-total="<%= total %>"></div>
 	<% } %>
+	
 	

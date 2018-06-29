@@ -10,7 +10,7 @@ export default class FiltersManager {
 		this.paginateService = paginateService;
 
 		this.btnFilter = $('.filter-item');
-		this.adsContainter = $('#ad-list');
+		this.adsContainter = $('#ad-list-wrapper');
 		this.filterKey = '';
 		this.filterVal = '';
 		this.initSkip = 0;

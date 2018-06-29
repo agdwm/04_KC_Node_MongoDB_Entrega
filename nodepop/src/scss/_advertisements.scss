@@ -1,5 +1,9 @@
+.ad-list-wrapper {
+	grid-area: ad-list-wrapper;
+	
+}
 .ad-list {
-	grid-area: ad-list;
+	
 	display: grid;
 	justify-content: center;
 	padding: 0 15px;
@@ -88,6 +92,25 @@
 	span{
 		margin: 0;
 		font-size: $font-size-h3;
+	}
+}
+
+.ad_not-ads{
+	text-align: center;
+
+	h4 {
+		font-style: italic;
+		font-weight: 400;
+		color: darken($color-gray-light, 30%);
+	}
+}
+
+.not-ads_frame{
+	max-width: 330px;
+	margin: 0 auto;
+	img {
+		max-width: 100%;
+		height: auto;
 	}
 }
 

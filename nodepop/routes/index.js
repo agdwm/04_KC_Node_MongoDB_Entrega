@@ -84,11 +84,18 @@ router.get('/:lang(es|en)?', [
 
 		// If it is an Ajax request
 		if (req.xhr) {
-			res.render('partials/adsList', {
-				limit: limit,
-				total: total,
-				advertisements: advertisements
-			});
+			if (advertisements.length > 0) {
+				res.render('partials/adsList', {
+					limit: limit,
+					total: total,
+					advertisements: advertisements
+				});
+			} else {
+				res.render('partials/notAds', {
+					limit: limit,
+					total: total,
+				});				
+			}
 			return;
 		}
 

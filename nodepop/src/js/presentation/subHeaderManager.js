@@ -10,7 +10,7 @@ export default class SubHeaderManager {
 		this.paginateService = paginateService;
 
 		this.btnMain = $('.main_button');
-		this.adsContainter = $('#ad-list');
+		this.adsContainter = $('#ad-list-wrapper');
 		this.modalityKey = '';
 		this.modalityVal = '';
 
