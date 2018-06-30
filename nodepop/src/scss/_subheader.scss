@@ -38,9 +38,6 @@
 		&.active {
 			color: #FFFFFF;
 			background-color: $color-green;
-			&:hover{
-				color: darken($color-green, 5%);
-			}
 			&:first-child{
 				border-right: 1px solid darken($color-green, 7%);
 			}

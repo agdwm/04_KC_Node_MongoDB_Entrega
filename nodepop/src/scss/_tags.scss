@@ -17,7 +17,7 @@ body{
 						 "ad-list-wrapper"
 						 "pagination-wrap"
 						 "footer";
-	grid-template-rows: max(80px) max(95px) max(75px) auto auto auto 80px;
+	grid-template-rows: max(80px) auto max(75px) auto auto auto 80px;
 }
 
 a{
@@ -25,5 +25,11 @@ a{
 	&:hover{
 		color: $color-green;
 		text-decoration: none;
+	}
+}
+
+@media screen and (min-width: $tablet-portrait-width) {
+	body {
+		grid-template-rows: max(80px) max(95px) max(75px) auto auto auto 80px;
 	}
 }

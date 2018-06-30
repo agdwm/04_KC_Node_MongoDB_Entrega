@@ -94,8 +94,10 @@
 }
 
 .ad_not-ads{
+	margin-top: 50px;
 	text-align: center;
 	h4 {
+		font-size: $font-size-h5;
 		font-style: italic;
 		font-weight: 400;
 		color: lighten($color-gray-dark, 25%);
@@ -103,7 +105,7 @@
 }
 
 .not-ads_frame{
-	max-width: 330px;
+	max-width: 250px;
 	margin: 0 auto;
 	img {
 		max-width: 100%;
@@ -123,6 +125,15 @@
 @media screen and (min-width: $tablet-portrait-width) {
 	.ad-list {
 		grid-template-columns: repeat(3, minmax(223px, 400px));
+	}
+	.ad_not-ads {
+		margin-top: 0;
+		h4 {
+			font-size: $font-size-h4;
+		}
+	}
+	.not-ads_frame{
+		max-width: 330px;
 	}
 }
 
