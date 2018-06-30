@@ -4,13 +4,13 @@ const $ = require('jquery');
 
 export default class SubHeaderManager {
 
-	constructor(adsService, dataService, paginateService) {
-		this.adsService = adsService;
+	constructor(dataService, commonManager) {
+
 		this.dataService = dataService;
-		this.paginateService = paginateService;
+		this.commonManager = commonManager;
 
 		this.btnMain = $('.main_button');
-		this.adsContainter = $('#ad-list-wrapper');
+
 		this.modalityKey = '';
 		this.modalityVal = '';
 
@@ -25,6 +25,7 @@ export default class SubHeaderManager {
 
 	setupClickEventHandler() {
 		this.btnMain.on('click', (e) => {
+			const self = this;
 			const currentTarget = $(e.currentTarget);
 
 			this.switchOption(currentTarget);
@@ -32,7 +33,7 @@ export default class SubHeaderManager {
 			this.getModalityVal(currentTarget);
 
 			this.dataService.createData({ isSale: this.modalityVal, skip: this.initSkip, limit: 8 });
-			this.loadAdsMain(this.dataService.getData());
+			this.commonManager.loadAdsMain(self, this.dataService.getData());
 
 			return false;
 		});
@@ -41,7 +42,6 @@ export default class SubHeaderManager {
 	getCurrentBtn(btn) {
 		const currentBtn = $.trim(btn.attr('data-num'));
 		this.currentBtn = currentBtn;
-		console.log('PAGE NUMBER', currentBtn);
 	}
 
 	switchOption(btn) {
@@ -60,41 +60,4 @@ export default class SubHeaderManager {
 	generateData(paginationTotalKey, paginationTotalVal) {
 		this.dataService.setData(paginationTotalKey, paginationTotalVal);
 	}
-
-	loadAdsMain(data) {
-		const self = this;
-		this.adsService.getList(
-			data,
-			(ads) => {
-				if (ads) {
-					this.renderAds(ads);
-					this.paginateService.setTotalAds();
-					this.paginateService.setDataSource();
-					self.paginateService.renderPaginate(self, $('#pagination'), this.initSkip);
-				}
-			},
-			(req, status, err) => {
-				console.log('something went wrong', status, err);
-			}
-		);
-	}
-
-	loadAdsPag(data) {
-		this.adsService.getList(
-			data,
-			(ads) => {
-				if (ads) {
-					this.renderAds(ads);
-				}
-			},
-			(req, status, err) => {
-				console.log('something went wrong', status, err);
-			}
-		);
-	}
-
-	renderAds(ads) {
-		this.adsContainter.html(ads);
-	}
 }
-

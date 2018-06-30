@@ -5,22 +5,25 @@ const $ = require('jquery');
 
 export default class PaginateService {
 	constructor() {
-		this.currentBtn = 1; // Valor del boton sobre el que se ha pulsado
+		this.currentBtn = 1;
 		this.skip = 0;
 		this.limit = parseInt($.trim($('#pagination-limit').attr('data-limit')), 10);
 
 		this.dataSource = [];
-
-		// this.paginationTotalKey = $.trim($('#pagination-total').attr('data-type'));
-
+		this.showGoInput = true;
+		this.showGoButton = true;
+		this.showBeginingOnOmit = false;
+		this.showEndingOnOmit = false;
+		this.hideWhenLessThanOnePage = true;
+		this.pageRange = 1;
+		this.prevText = '<i class="glyphicon glyphicon-chevron-left"></i>';
+		this.nextText = '<i class="glyphicon glyphicon-chevron-right"></i>';
 	}
 
 	setTotalAds() {
 		const currentTotalAds = $.trim($('#pagination-total').attr('data-total'));
 		$('#pagination-total').attr('data-total', currentTotalAds);
 		this.totalAds = parseInt(currentTotalAds, 10);
-		console.log('currentTotalAds', currentTotalAds);
-		console.log('TotalAds', this.totalAds);
 	}
 
 	// Array with the Total of elements
@@ -40,25 +43,19 @@ export default class PaginateService {
 		console.log('currentSkip1', this.skip);
 	}
 
-	// generateTotalVal() {
-	// 	this.skip = this.skip.toString();
-	// 	this.limit = this.limit.toString();
-	// }
-
 	initPaginate(self, pagContainer) {
 		pagContainer.pagination({
 			dataSource: this.dataSource, // total ads from filtered request
 			pageSize: this.limit, // num max ads per page
-			showGoInput: true,
-			showGoButton: true,
-			showBeginingOnOmit: false,
-			showEndingOnOmit: false,
-			hideWhenLessThanOnePage: true,
-			pageRange: 1,
-			prevText: '<i class="glyphicon glyphicon-chevron-left"></i>',
-			nextText: '<i class="glyphicon glyphicon-chevron-right"></i>',
+			showGoInput: this.showGoInput,
+			showGoButton: this.showGoButton,
+			showBeginingOnOmit: this.showBeginingOnOmit,
+			showEndingOnOmit: this.showEndingOnOmit,
+			hideWhenLessThanOnePage: this.hideWhenLessThanOnePage,
+			pageRange: this.pageRange,
+			prevText: this.prevText,
+			nextText: this.nextText,
 			callback: (data, pagination) => {
-				console.log('Load DataSource', this.dataSource);
 				const currentBtn = pagination.pageNumber;
 				this.generateCurrentSkip(currentBtn);
 				self.dataService.createData({ skip: this.skip, limit: this.limit });
@@ -74,25 +71,19 @@ export default class PaginateService {
 		pagContainer.pagination({
 			dataSource: this.dataSource, // total ads from filtered request
 			pageSize: this.limit, // num max ads per page
-			showGoInput: true,
-			showGoButton: true,
-			showBeginingOnOmit: false,
-			showEndingOnOmit: false,
-			pageRange: 1,
-			hideWhenLessThanOnePage: true,
-			prevText: '<i class="glyphicon glyphicon-chevron-left"></i>',
-			nextText: '<i class="glyphicon glyphicon-chevron-right"></i>',
+			showGoInput: this.showGoInput,
+			showGoButton: this.showGoButton,
+			showBeginingOnOmit: this.showBeginingOnOmit,
+			showEndingOnOmit: this.showEndingOnOmit,
+			hideWhenLessThanOnePage: this.hideWhenLessThanOnePage,
+			pageRange: this.pageRange,
+			prevText: this.prevText,
+			nextText: this.nextText,
 			callback: (data, pagination) => {
-				console.log('Ajax DataSource', this.dataSource);
 				const currentBtn = pagination.pageNumber;
 				this.generateCurrentSkip(currentBtn);
-				console.log('this.skip2', this.skip);
-
 				self.dataService.createData({ skip: this.skip, limit: this.limit });
-				self.loadAdsPag(self.dataService.getData());
-				// self.generateData(this.skip, this.limit);
-				// self.loadAds(self.dataService.getData());
 			}
-		});		
+		});
 	}
 }

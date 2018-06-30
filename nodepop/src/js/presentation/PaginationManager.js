@@ -29,6 +29,7 @@ export default class PaginationManager {
 	}
 
 	loadAds(data) {
+
 		this.adsService.getList(
 			data,
 			(ads) => {

@@ -13,9 +13,7 @@ export default class DataService {
 	}
 
 	createData(args) {
-		// this.data = $.extend({}, this.data, args);
 		this.newData = args;
-
 		$.each(this.newData, (key, value) => {
 			this.setData(key, value);
 		});
