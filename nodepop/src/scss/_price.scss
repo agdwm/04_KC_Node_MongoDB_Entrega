@@ -11,12 +11,13 @@
 .btn-price {
 	min-width: 160px;
 	padding: 10px 20px;
-	color: $color-gray-dark;
-	background-color: $color-gray-light;
+	color: #FFFFFF;
+	background-color: $color-green;
 	border: 0;
 	border-radius: 10px;
 	&:hover {
-		background-color: darken($color-gray-light, 5%);
+		color: #FFFFFF;
+		background-color: darken($color-green, 5%);
 	}
 }
 

@@ -1,9 +1,7 @@
 .ad-list-wrapper {
 	grid-area: ad-list-wrapper;
-	
 }
 .ad-list {
-	
 	display: grid;
 	justify-content: center;
 	padding: 0 15px;
@@ -97,11 +95,10 @@
 
 .ad_not-ads{
 	text-align: center;
-
 	h4 {
 		font-style: italic;
 		font-weight: 400;
-		color: darken($color-gray-light, 30%);
+		color: lighten($color-gray-dark, 25%);
 	}
 }
 
