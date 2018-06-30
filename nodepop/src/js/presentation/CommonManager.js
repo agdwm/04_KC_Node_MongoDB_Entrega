@@ -15,6 +15,20 @@ export default class CommonManager {
 
 	init() {}
 
+	loadAds(data) {
+		this.adsService.getList(
+			data,
+			(ads) => {
+				if (ads) {
+					this.renderAds(ads);
+				}
+			},
+			(req, status, err) => {
+				console.log('something went wrong', status, err);
+			}
+		);
+	}
+
 	loadAdsMain(self, data) {
 		this.adsService.getList(
 			data,
@@ -24,7 +38,6 @@ export default class CommonManager {
 					this.paginateService.setTotalAds();
 					this.paginateService.setDataSource();
 					this.paginateService.renderPaginate(self, $('#pagination'), this.initSkip);
-					this.loadAdsPag(self.dataService.getData());
 				}
 			},
 			(req, status, err) => {

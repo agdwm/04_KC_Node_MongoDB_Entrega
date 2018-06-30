@@ -43,7 +43,9 @@ export default class PaginateService {
 		console.log('currentSkip1', this.skip);
 	}
 
+	// self = paginationManager
 	initPaginate(self, pagContainer) {
+		console.log('LOAD DataSource', this.dataSource);
 		pagContainer.pagination({
 			dataSource: this.dataSource, // total ads from filtered request
 			pageSize: this.limit, // num max ads per page
@@ -59,7 +61,7 @@ export default class PaginateService {
 				const currentBtn = pagination.pageNumber;
 				this.generateCurrentSkip(currentBtn);
 				self.dataService.createData({ skip: this.skip, limit: this.limit });
-				self.loadAds(self.dataService.getData());
+				self.commonManager.loadAds(self.dataService.getData());
 			}
 		});
 	}
@@ -83,6 +85,7 @@ export default class PaginateService {
 				const currentBtn = pagination.pageNumber;
 				this.generateCurrentSkip(currentBtn);
 				self.dataService.createData({ skip: this.skip, limit: this.limit });
+				self.commonManager.loadAdsPag(self.dataService.getData());
 			}
 		});
 	}

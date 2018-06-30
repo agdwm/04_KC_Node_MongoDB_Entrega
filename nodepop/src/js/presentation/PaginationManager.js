@@ -3,10 +3,11 @@
 const $ = require('jquery');
 
 export default class PaginationManager {
-	constructor(adsService, dataService, paginateService) {
-		this.adsService = adsService;
+	constructor(dataService, paginateService, commonManager) {
+
 		this.dataService = dataService;
 		this.paginateService = paginateService;
+		this.commonManager = commonManager;
 
 		this.dataSource = [];
 		this.pagContainer = $('#pagination');
@@ -26,24 +27,5 @@ export default class PaginationManager {
 			this.paginateService.setDataSource();
 		}
 		this.paginateService.initPaginate(self, this.pagContainer);
-	}
-
-	loadAds(data) {
-
-		this.adsService.getList(
-			data,
-			(ads) => {
-				if (ads) {
-					this.renderAds(ads);
-				}
-			},
-			(req, status, err) => {
-				console.log('something went wrong', status, err);
-			}
-		);
-	}
-
-	renderAds(ads) {
-		this.adsContainter.html(ads);
 	}
 }
