@@ -74,7 +74,9 @@ const js = {
 const img = {
 	in: source + 'images/**/*',
 	out: dest + 'images/',
-	watch: source + 'images/**/*'
+	watch: source + 'images/**/*',
+	noResponsive: source + 'images-noresponsive/**/*',
+	noResponsiveOut:  dest + 'images-noresponsive/',
 };
 
 // copy bootstrap required fonts to dest
@@ -154,18 +156,25 @@ gulp.task('eslint', () => {
 		});
 });
 
-gulp.task('img', () => {
-    gulp.src(img.in)
-        .pipe(responsive({ // generamos las versiones responsive
-            '*': [
-                // { width: 150, rename: { suffix: '-150px' }},
-                // { width: 250, rename: { suffix: '-250px' }},
-                { width: 400, rename: { suffix: '-400px' }}
-            ]
-        }))
-        // .pipe(imagemin()) // optimizamos el peso de las imágenes
+gulp.task('img', ['img-noresponsive'], () => {
+	gulp.src(img.in)
+		.pipe(responsive({ // generamos las versiones responsive
+			'*': [
+				// { width: 150, rename: { suffix: '-150px' }},
+				// { width: 250, rename: { suffix: '-250px' }},
+				{ width: 400, rename: { suffix: '-400px' } }
+			]
+		}))
+		// .pipe(imagemin()) // optimizamos el peso de las imágenes
 		.pipe(gulp.dest(img.out))
 		.pipe(notify({ message: 'Images task complete' }));
+});
+
+gulp.task('img-noresponsive', () => {
+	gulp.src(img.noResponsive)
+		.pipe(imagemin()) // optimizamos el peso de las imágenes
+		.pipe(gulp.dest(img.noResponsiveOut))
+		.pipe(notify({ message: 'Images No responsive moved to destination' }));
 });
 
 // BrowserSync
